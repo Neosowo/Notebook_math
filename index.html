@@ -1205,6 +1205,47 @@
             color: #3b82f6 !important; /* Azul brillante en hover */
             transform: translateY(-2px);
         }
+
+        /* Sidebar: ancho y texto responsive */
+        aside.sidebar {
+            width: 13rem !important;
+            min-width: 13rem !important;
+            max-width: 13rem !important;
+            /* ... */
+        }
+
+        /* Ajuste para móvil: sidebar más angosto y texto adaptable */
+        @media (max-width: 640px) {
+            aside.sidebar {
+                width: 90vw !important;
+                min-width: 0 !important;
+                max-width: 100vw !important;
+            }
+            .sidebar-header h2 {
+                font-size: 1.1rem !important;
+                white-space: normal !important;
+                word-break: break-word !important;
+                padding-right: 0.5rem !important;
+            }
+            .sidebar-header {
+                padding-left: 0.5rem !important;
+                padding-right: 0.5rem !important;
+            }
+        }
+
+        /* Ajuste para tablets */
+        @media (min-width: 641px) and (max-width: 1023px) {
+            aside.sidebar {
+                width: 15rem !important;
+                min-width: 0 !important;
+                max-width: 100vw !important;
+            }
+            .sidebar-header h2 {
+                font-size: 1.2rem !important;
+                white-space: normal !important;
+                word-break: break-word !important;
+            }
+        }
     </style>
 </head>
 <body class="bg-gray-50 font-sans flex flex-col min-h-screen">
