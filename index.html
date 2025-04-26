@@ -1,0 +1,1789 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notebook Math</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="assets/img/icon_gradient.png">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#5B7BF0',
+                        secondary: '#8C5EF7',
+                        accent: '#FF7979',
+                        dark: '#1F2937',
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Estilos para modo oscuro - colores mejorados */
+        @import url('https://fonts.googleapis.com/css2?family=Comic+Relief:wght@400;700&family=Concert+One&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            transition: background-color 0.5s ease, color 0.5s ease;
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Aplicar Poppins a todos los elementos */
+        * {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* Usar solo la paleta de colores oscuros por defecto */
+        :root {
+            --bg-color: #0D1117;
+            --text-color: #ffffff;
+            --sidebar-bg: #161B22;
+            --header-bg: #0D1117;
+            --card-bg: #21262D;
+            --hover-bg: #2D333B;
+            --border-color: #30363D;
+            --accent-color: #7E82FC;
+            --accent-hover: #5B7BF0;
+            --muted-text: #8B949E;
+            --code-bg: #1a1e24;
+            --gradient-start: rgba(123, 97, 255, 0.1);
+            --gradient-end: rgba(91, 123, 240, 0.05);
+        }
+        
+        /* Corregir espacios en blanco */
+        div, section, main, aside, nav, header, footer {
+            background-color: var(--bg-color);
+        }
+        
+        /* Unificar colores de texto */
+        body, p, h1, h2, h3, h4, h5, h6, span, a, li, ul, ol, div {
+            color: var(--text-color);
+        }
+        
+        .toc-wrapper {
+            background-color: var(--card-bg) !important;
+            border-radius: 8px;
+        }
+        
+        /* Unificar el aspecto del menú de la derecha */
+        .toc-content a, 
+        #mobile-toc a,
+        .toc-wrapper h3,
+        .toc-wrapper .fas,
+        #mobile-toc h3,
+        #mobile-toc .fas {
+            color: var(--text-color);
+        }
+        
+        .toc-content a:hover, 
+        #mobile-toc a:hover {
+            color: var(--accent-color);
+        }
+        
+        pre, code {
+            background-color: var(--code-bg);
+        }
+        
+        #main-content {
+            background-color: var(--bg-color);
+        }
+        
+        .w-full {
+            background-color: var(--bg-color);
+        }
+
+        aside.sidebar {
+            background-color: var(--sidebar-bg) !important;
+            border-right: 1px solid var(--border-color);
+            width: 13rem !important;
+            min-width: 13rem !important;
+            max-width: 13rem !important;
+            box-sizing: border-box;
+        }
+        
+        header {
+            background-color: var(--header-bg) !important;
+            color: white;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1) !important;
+        }
+        
+        /* Estilos mejorados para el menú lateral */
+        aside nav a,
+        .sidebar-link {
+            color: var(--text-color);
+            opacity: 0.9;
+        }
+        
+        aside nav a:hover,
+        .sidebar-link:hover {
+            color: var(--accent-color);
+            opacity: 1;
+        }
+        
+        /* Sombras y efectos sutiles para los elementos */
+        .shadow-aesthetic {
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+        }
+        
+        .shadow-aesthetic-hover:hover {
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+        }
+        
+        /* Transiciones suaves */
+        .transition-aesthetic {
+            transition: all 0.3s ease;
+        }
+        
+        /* Gradientes sutiles para botones */
+        .btn-gradient {
+            background-image: linear-gradient(to right, var(--accent-color), var(--accent-hover));
+            transition: all 0.3s ease;
+        }
+        
+        .btn-gradient:hover {
+            background-image: linear-gradient(to right, var(--accent-hover), var(--accent-color));
+            transform: translateY(-2px);
+        }
+        
+        body.dark-mode {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            background-image: 
+                radial-gradient(circle at 100% 0%, var(--gradient-start) 0%, transparent 25%),
+                radial-gradient(circle at 0% 100%, var(--gradient-end) 0%, transparent 25%);
+        }
+        
+        body.dark-mode aside {
+            background-color: var(--bg-color) !important;
+        }
+        
+        body:not(.dark-mode) aside {
+            background-color: var(--bg-color)  !important;
+        }
+        
+        body.dark-mode header {
+            background-color: #161B22 !important;
+        }
+        
+        body.dark-mode .bg-white {
+            background-color: var(--card-bg);
+        }
+        
+        body.dark-mode .text-gray-700, 
+        body.dark-mode .text-gray-800, 
+        body.dark-mode .text-gray-600 {
+            color: var(--text-color);
+        }
+        
+        body.dark-mode .text-gray-500 {
+            color: var(--muted-text);
+        }
+        
+        body.dark-mode .hover\:bg-gray-100:hover {
+            background-color: var(--hover-bg);
+        }
+        
+        body.dark-mode .border-b,
+        body.dark-mode .border-t {
+            border-color: var(--border-color);
+        }
+        
+        /* Estilos para elementos específicos en modo oscuro */
+        body.dark-mode .bg-blue-50 {
+            background-color: rgba(91, 123, 240, 0.15);
+            border-radius: 0.5rem;
+            backdrop-filter: blur(4px);
+        }
+        
+        body.dark-mode .text-primary {
+            color: var(--accent-color);
+        }
+        
+        body.dark-mode .hover\:text-primary:hover {
+            color: var(--accent-hover);
+        }
+        
+        body.dark-mode .border-primary {
+            border-color: var(--accent-color);
+        }
+        
+        body.dark-mode .bg-blue-50.text-primary {
+            background-color: rgba(91, 123, 240, 0.15);
+            color: var(--accent-color);
+        }
+        
+        body.dark-mode .hover\:border-primary:hover {
+            border-color: var(--accent-color);
+        }
+        
+        body.dark-mode .bg-gray-100 {
+            background-color: var(--hover-bg);
+        }
+        
+        body.dark-mode .bg-gray-800 {
+            background-color: var(--code-bg);
+        }
+        
+        body.dark-mode input {
+            background-color: var(--hover-bg);
+            border-color: var(--border-color);
+            color: var(--text-color);
+        }
+        
+        body.dark-mode .bg-gray-50 {
+            background-color: var(--hover-bg);
+        }
+        
+        body.dark-mode .bg-yellow-50 {
+            background-color: rgba(234, 179, 8, 0.15);
+            border-radius: 0.5rem;
+            backdrop-filter: blur(4px);
+        }
+        
+        body.dark-mode .bg-blue-50 {
+            background-color: rgba(91, 123, 240, 0.15);
+            border-radius: 0.5rem;
+            backdrop-filter: blur(4px);
+        }
+        
+        /* Sidebar fijo y espaciado adicional */
+        aside {
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+        
+        aside nav {
+            padding: 0;
+            margin-top: 0;
+        }
+        
+        /* Links del sidebar - cuadrados sin bordes redondeados */
+        aside nav a {
+            display: block;
+            color: rgba(140, 149, 178, 0.85);
+            padding: 0.8rem 1rem;
+            transition: background-color 0.2s ease, color 0.2s ease, border-left-color 0.2s ease;
+            margin: 0;
+            border-left: 3px solid transparent;
+            font-size: 0.95rem;
+        }
+        
+        aside nav a:hover, 
+        aside nav a.active {
+            background-color: #1E293B;
+            border-left-color: #5B7BF0;
+            color: #5B7BF0;
+        }
+        
+        /* Estilo para el borde izquierdo azul */
+        aside nav a:hover {
+            border-left-color: #5B7BF0;
+        }
+        
+        aside.sidebar {
+            background-color: var(--sidebar-bg) !important;
+        }
+        
+        body.dark-mode aside {
+            background-color: var(--sidebar-bg) !important;
+        }
+        
+        body:not(.dark-mode) aside {
+            background-color: var(--sidebar-bg) !important;
+        }
+        
+        .sidebar-header {
+            position: relative;
+            padding-bottom: 1.5rem !important;
+            border-bottom: none !important;
+            width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+        
+        .sidebar-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0.5rem;
+            left: 1rem;
+            width: calc(100% - 2rem);
+            height: 3px;
+            border-radius: 2px;
+            background: linear-gradient(90deg,
+                #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec,
+                #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1, #d16ba5
+            );
+            background-size: 300% 300%;
+            animation: gradient-move 6s ease-in-out infinite, slide-in 1s cubic-bezier(.77,0,.18,1) 0s 1;
+            z-index: 1;
+            transform: scaleX(0);
+            transform-origin: left;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+        
+        .sidebar-header h2 {
+            color: white;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+            transition: color 0.3s, background 0.3s;
+            background: none;
+            cursor: pointer;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: unset;
+            background-clip: unset;
+            text-fill-color: unset;
+        }
+        
+        .sidebar-header h2:hover {
+            color: transparent !important;
+            background: linear-gradient(90deg,
+                #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec,
+                #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1, #d16ba5
+            );
+            background-size: 300% 300%;
+            animation: gradient-move 6s ease-in-out infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            text-shadow: none !important;
+        }
+        
+        .sidebar-header.loaded::after {
+            transform: scaleX(1);
+            opacity: 1;
+        }
+        
+        /* Asegurar que no haya espacios entre elementos del sidebar */
+        #sidebar-nav {
+            margin: 0;
+            padding: 0;
+        }
+        
+        /* Hacer que el sidebar sea sticky en escritorio */
+        @media (min-width: 1024px) {
+            aside.sidebar {
+                position: sticky;
+                top: 0;
+                height: 100vh;
+                width: 18rem;
+                box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            }
+        }
+        
+        /* Active state para links de TOC */
+        .toc-content a {
+            color: var(--text-color);
+            opacity: 0.8;
+            transition: all 0.2s ease;
+        }
+        
+        .toc-content a:hover {
+            color: var(--accent-color);
+            opacity: 1;
+        }
+        
+        /* Active state para links de TOC */
+        .toc-content a.active {
+            color: var(--accent-color);
+            border-left-color: var(--accent-color);
+            background-color: rgba(91, 123, 240, 0.05);
+            border-radius: 0 0.25rem 0.25rem 0;
+            opacity: 1;
+        }
+        
+        /* Botones del header en modo oscuro */
+        body.dark-mode header button.hover\:bg-gray-100:hover {
+            background-color: var(--hover-bg);
+        }
+        
+        /* Color del título */
+        body.dark-mode h1 {
+            color: var(--text-color);
+        }
+        
+        /* Iconos en el header */
+        body.dark-mode header i {
+            color: var(--text-color);
+        }
+        
+        /* Tabla de contenidos fija */
+        .toc-wrapper {
+            position: sticky;
+            top: 5rem;
+        }
+        
+        /* Barra de navegación con webkit */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: var(--accent-color);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: var(--accent-hover);
+        }
+
+        /* Animación de carga más estética */
+        .loading-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 200px;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 3px solid rgba(91, 123, 240, 0.1);
+            border-radius: 50%;
+            border-top: 3px solid var(--accent-color);
+            animation: spin 1s linear infinite;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Mejorar el aspecto de los bloques de código */
+        pre code {
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+            font-family: 'Fira Code', 'Ubuntu Mono', monospace;
+        }
+        
+        /* Efectos de hover para los elementos interactivos */
+        button {
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            transform: translateY(-1px);
+        }
+        
+        /* Estilos para las notas y advertencias */
+        .bg-blue-50, .bg-yellow-50 {
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .bg-blue-50:hover, .bg-yellow-50:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.08);
+            transform: translateY(-2px);
+        }
+        
+        /* Mejorar la estética del header */
+        header {
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        /* Mejorar la estética de los botones de edición */
+        #edit-button, #save-content {
+            background-image: linear-gradient(to right, var(--accent-color), var(--accent-hover));
+            color: white;
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        #edit-button:hover, #save-content:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(91, 123, 240, 0.3);
+        }
+        
+        /* Secciones de contenido */
+        section {
+            border-radius: 0.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        section:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Títulos con borde decorativo */
+        h2 {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, var(--accent-color), transparent);
+        }
+        
+        /* Estilos para el header del sidebar */
+        .sidebar-header {
+            background-color: var(--sidebar-bg);
+            background-image: none;
+            border-bottom: 1px solid var(--border-color);
+            padding: 1rem;
+        }
+        
+        .sidebar-header h2 {
+            color: var(--text-color);
+            font-weight: 600;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+        
+        .sidebar-header button {
+            color: var(--text-color);
+        }
+        
+        .sidebar-header button:hover {
+            background-color: var(--hover-bg);
+        }
+        
+        /* Actualizar los estilos para el sidebar en modo oscuro/claro */
+        body:not(.dark-mode) .sidebar-header {
+            background-color: var(--sidebar-bg);
+            background-image: none;
+        }
+        
+        /* Estilos para el header principal */
+        .main-header {
+            background-color: var(--bg-color);
+            background-image: none;
+            color: var(--text-color);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .main-header h1 {
+            color: var(--text-color);
+        }
+        
+        .main-header button {
+            color: var(--text-color);
+        }
+        
+        .main-header button:hover:not(#edit-button):not(#save-content) {
+            background-color: rgba(0, 0, 0, 0.05);
+        }
+        
+        body:not(.dark-mode) .main-header {
+            background-color: var(--bg-color);
+            background-image: none;
+        }
+        
+        /* Ajustar el icono del tema */
+        .main-header .theme-toggle i {
+            color: white;
+        }
+        
+        /* Ajustar la apariencia para sidebar y header en ambos modos */
+        body.dark-mode .main-header,
+        body.dark-mode .sidebar-header {
+            background-color: var(--bg-color);
+            background-image: none;
+        }
+        
+        body:not(.dark-mode) .main-header,
+        body:not(.dark-mode) .sidebar-header {
+            background-color: var(--bg-color);
+            background-image: none;
+        }
+        
+        /* Ajustes para los botones del header */
+        .main-header .theme-toggle {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        .main-header .theme-toggle:hover {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Ajustes para el título principal en diferentes tamaños de pantalla */
+        @media (max-width: 640px) {
+            .main-header h1 span {
+                font-size: 1rem;
+            }
+            
+            .main-header h1 img {
+                width: 1.5rem;
+                height: 1.5rem;
+            }
+        }
+        
+        /* Estilo para el header cuando se hace scroll */
+        .main-header.scrolled {
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.25);
+        }
+        
+        /* Ajustar el área principal para mejor contraste */
+        main {
+            background-color: var(--bg-color);
+        }
+        
+        /* Asegurar que el contenido principal tenga suficiente espacio */
+        #main-content {
+            min-height: calc(100vh - 64px);
+        }
+        
+        /* Ajustes para el modo oscuro */
+        body.dark-mode .toc-wrapper {
+            background-color: rgba(30, 41, 59, 0.5);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        
+        body.dark-mode #mobile-toc {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            border-top: 1px solid var(--border-color);
+        }
+        
+        body.dark-mode #mobile-toc h3 {
+            color: var(--text-color);
+        }
+        
+        body.dark-mode #mobile-toc .toc-close {
+            color: var(--text-color);
+        }
+        
+        body.dark-mode #mobile-toc .toc-close:hover {
+            background-color: var(--hover-bg);
+        }
+        
+        /* Estilos para enlaces en la barra lateral y TOC */
+        a {
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+
+        /* Enlaces en la barra lateral */
+        .sidebar-link {
+            display: block;
+            color: var(--text-color) !important;
+            padding: 0.8rem 1rem;
+            transition: background-color 0.2s ease, color 0.2s ease, border-left-color 0.2s ease;
+            margin: 0;
+            border-left: 3px solid transparent;
+            font-size: 0.95rem;
+            text-decoration: none;
+        }
+        
+        .sidebar-link:hover, 
+        .sidebar-link.active {
+            background-color: rgba(91, 123, 240, 0.1);
+            border-left-color: var(--accent-color);
+            color: var(--accent-color) !important;
+        }
+
+        /* Enlaces en tabla de contenidos */
+        .toc-content a {
+            display: block;
+            color: var(--text-color);
+            padding: 0.4rem 0.6rem;
+            border-left: 2px solid transparent;
+            margin-bottom: 0.3rem;
+            border-radius: 0 0.25rem 0.25rem 0;
+            transition: all 0.2s ease;
+        }
+
+        .toc-content a:hover,
+        .toc-content a.active {
+            color: var(--accent-color);
+            border-left-color: var(--accent-color);
+            background-color: rgba(91, 123, 240, 0.1);
+        }
+
+        /* Botón flotante */
+        #toc-mobile-toggle {
+            background-color: var(--accent-color);
+            color: white;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Oscurecer código */
+        pre, code {
+            background-color: var(--code-bg);
+            color: #f8f8f2;
+        }
+
+        #mobile-toc {
+            background-color: var(--card-bg);
+            color: var(--text-color);
+            border-top: 1px solid var(--border-color);
+        }
+
+        #toc-overlay {
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+
+        .bg-white {
+            background-color: var(--card-bg) !important;
+        }
+
+        /* Forzar texto blanco en todos los elementos */
+        .text-gray-700, 
+        .text-gray-600, 
+        .text-gray-800, 
+        .text-gray-500,
+        p, li, h1, h2, h3, h4, h5, h6, span {
+            color: white !important;
+        }
+
+        /* Unificar el aspecto del menú lateral y la tabla de contenidos */
+        .toc-content a, 
+        #mobile-toc a,
+        .sidebar-link {
+            color: white !important;
+            opacity: 0.9;
+        }
+
+        .toc-content a:hover, 
+        #mobile-toc a:hover,
+        .sidebar-link:hover,
+        .toc-content a.active,
+        .sidebar-link.active {
+            color: var(--accent-color) !important;
+            opacity: 1;
+        }
+
+        /* Eliminar el botón de edición */
+        #editar-desktop {
+            display: none !important;
+        }
+
+        /* Asegurar que el fondo del menú sea correcto */
+        .toc-wrapper {
+            background-color: var(--card-bg) !important;
+        }
+
+        /* Corregir fondos */
+        .bg-gray-50, .bg-gray-100, .bg-white, .bg-blue-50, .bg-yellow-50 {
+            background-color: var(--card-bg) !important;
+        }
+
+        /* Mejorar contraste en bloques de código */
+        .relative.bg-gray-800 {
+            background-color: #1a1e24 !important;
+        }
+
+        /* Unificar colores de fondo */
+        .toc-wrapper, 
+        #mobile-toc, 
+        .sidebar-link, 
+        .sidebar-link:hover,
+        .sidebar-link.active,
+        .toc-content a:hover,
+        .toc-content a.active,
+        aside.sidebar, 
+        .sidebar-header,
+        main,
+        body,
+        section,
+        div {
+            background-color: var(--bg-color) !important;
+        }
+
+        /* Reemplazar colores de fondo específicos */
+        .bg-gray-50, 
+        .bg-gray-100, 
+        .bg-white, 
+        .bg-blue-50, 
+        .bg-yellow-50, 
+        .toc-wrapper,
+        .relative.bg-gray-800,
+        #mobile-toc,
+        pre, 
+        code {
+            background-color: var(--bg-color) !important;
+        }
+
+        /* Mantener consistentes los bordes */
+        .border, .border-t, .border-b, .border-l, .border-r {
+            border-color: var(--border-color) !important;
+        }
+
+        /* Eliminar gradientes en texto y botones */
+        .btn-gradient {
+            background-image: none !important;
+            background-color: var(--accent-color) !important;
+        }
+
+        /* Eliminar efecto hover en secciones */
+        section:hover {
+            transform: none !important;
+        }
+
+        /* Eliminar sombreados */
+        .shadow-aesthetic,
+        .shadow-md, 
+        .shadow-lg,
+        .shadow-xl {
+            box-shadow: none !important;
+        }
+
+        /* CSS para diferenciar el sidebar y los bloques de código */
+
+        /* Asegurar que el sidebar tenga un color distinto y uniforme */
+        aside.sidebar,
+        .sidebar-header,
+        #sidebar-nav,
+        .sidebar-link,
+        .sidebar-link:hover,
+        .sidebar-link.active {
+            background-color: var(--sidebar-bg) !important;
+        }
+
+        /* Asegurar que el contenido principal tenga un color uniforme */
+        main,
+        body,
+        section,
+        #main-content,
+        .w-full,
+        .bg-gray-50, 
+        .bg-gray-100, 
+        .bg-white, 
+        .bg-blue-50, 
+        .bg-yellow-50 {
+            background-color: var(--bg-color) !important;
+        }
+
+        /* Asegurar que los bloques de código tengan un color distinto */
+        pre, 
+        code,
+        .relative.bg-gray-800 {
+            background-color: var(--code-bg) !important;
+        }
+
+        /* Estilo uniforme para la tabla de contenidos */
+        .toc-wrapper,
+        #mobile-toc {
+            background-color: var(--card-bg) !important;
+        }
+
+        /* Mantener colores de texto consistentes */
+        .toc-content a, 
+        #mobile-toc a,
+        .sidebar-link {
+            color: white !important;
+            opacity: 0.9;
+        }
+
+        /* Eliminar efectos de hover y sombreados */
+        .shadow-aesthetic,
+        .shadow-md, 
+        .shadow-lg,
+        .shadow-xl {
+            box-shadow: none !important;
+        }
+
+        section:hover {
+            transform: none !important;
+        }
+
+        /* Asegurar que todo el menú "En esta página" tenga fondo blanco */
+        .toc-wrapper {
+            background-color: white !important;
+        }
+
+        .toc-content a,
+        #mobile-toc a,
+        .toc-content,
+        #toc-desktop {
+            background-color: var(--card-bg) !important;
+            color: white !important;
+        }
+
+        .toc-wrapper h3,
+        .toc-wrapper .fas,
+        #mobile-toc h3,
+        #mobile-toc .fas {
+            color: white !important;
+        }
+
+        /* Mejorar el hover de los enlaces del menú */
+        .toc-content a:hover,
+        .toc-content a.active {
+            background-color: rgba(126, 130, 252, 0.2) !important;
+            color: var(--accent-color) !important;
+            border-left-color: var(--accent-color);
+            border-radius: 0 4px 4px 0;
+        }
+
+        /* Hacer que todo el menú de "En esta página" tenga un único color */
+        .toc-wrapper,
+        .toc-content a,
+        #mobile-toc a,
+        .toc-content,
+        #toc-desktop,
+        .toc-wrapper h3,
+        .toc-wrapper .fas,
+        #mobile-toc h3,
+        #mobile-toc .fas {
+            background-color: white !important;
+            color: black !important;
+        }
+
+        /* Asegurar que los links al hacer hover también mantengan el fondo blanco */
+        .toc-content a:hover,
+        .toc-content a.active {
+            background-color: white !important;
+            color: #3b82f6 !important; /* Azul brillante para el texto al hacer hover */
+            border-left-color: #3b82f6;
+            border-radius: 0;
+        }
+
+        /* Corregir inconsistencias en el menú móvil */
+        #mobile-toc,
+        #mobile-toc .p-4,
+        #mobile-toc a,
+        #mobile-toc h3,
+        #mobile-toc .border-b,
+        #mobile-toc .toc-close,
+        #mobile-toc i {
+            background-color: #f5f5f5 !important;
+            color: black !important;
+        }
+
+        /* Eliminar línea duplicada debajo de Notebook - asegurar que solo haya una */
+        .sidebar-header {
+            position: relative;
+            padding-bottom: 1.5rem !important;
+            border-bottom: none !important;
+        }
+
+        /* Deshabilitar cualquier línea adicional */
+        .sidebar-header::before {
+            display: none !important;
+        }
+
+        .sidebar-header h2::after {
+            display: none !important;
+        }
+
+        /* Reemplazar "By Neos" con un icono de GitHub enlazado */
+        header .flex.items-center.space-x-2::before {
+            content: "";
+            display: inline-block;
+        }
+
+        /* Añadir el enlace a GitHub en el header */
+        header .flex.items-center.space-x-2 {
+            position: relative;
+        }
+
+        header .flex.items-center.space-x-2::after {
+            content: "";
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 24px;
+            height: 24px;
+            background-image: url('https://cdn.jsdelivr.net/npm/simple-icons@v5/icons/github.svg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            filter: invert(1);
+            margin-right: 10px;
+            cursor: pointer;
+        }
+
+        /* Añadir el enlace real mediante JavaScript */
+        header .flex.items-center.space-x-2::after:hover {
+            opacity: 0.8;
+        }
+
+        /* Modificar el icono de GitHub a color blanco */
+        header .flex.items-center.space-x-2 a .fab.fa-github {
+            color: white !important;
+            font-size: 1.5rem;
+        }
+
+        /* Remover el pseudo-elemento after ya que estamos usando un enlace real */
+        header .flex.items-center.space-x-2::after {
+            display: none;
+        }
+
+        /* Ocultar la tabla de contenidos en modo móvil */
+        @media (max-width: 1023px) {
+            .w-full.lg\:w-1\/4.mt-8.lg\:mt-0 {
+                display: none !important;
+            }
+            
+            /* Asegurar que el contenido principal ocupe todo el ancho en móvil */
+            .w-full.lg\:w-3\/4.lg\:pr-6 {
+                width: 100% !important;
+                padding-right: 0 !important;
+            }
+        }
+
+        /* Mejorar el hover del botón toggle del sidebar */
+        .sidebar-toggle:hover {
+            background-color: rgba(139, 92, 246, 0.2) !important; /* Color morado con transparencia */
+        }
+
+        /* Asegurar que el botón tiene una transición suave */
+        .sidebar-toggle {
+            transition: all 0.3s ease;
+            border-radius: 0.5rem;
+        }
+
+        /* Mejorar también el hover del botón de cierre del sidebar */
+        .sidebar-close:hover {
+            background-color: rgba(139, 92, 246, 0.2) !important;
+        }
+
+        /* Ajusta el padding del main-content en pantallas grandes */
+        @media (min-width: 1024px) {
+            #main-content {
+                padding-left: 1.5rem !important; /* Puedes ajustar este valor (por ejemplo, 1rem, 1.5rem, 2rem) */
+                padding-right: 0 !important;
+            }
+            .p-4.lg\:p-6.flex.flex-col.lg\:flex-row {
+                padding-left: 0 !important; /* Elimina padding extra del contenedor flex */
+            }
+        }
+
+        /* Cambia el color del icono de GitHub al color primario en hover */
+        header .fab.fa-github {
+            transition: color 0.3s;
+            color: white !important;
+            background: none;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: unset;
+            background-clip: unset;
+            text-fill-color: unset;
+        }
+        header .fab.fa-github:hover {
+            color: transparent !important;
+            background: linear-gradient(90deg,
+                #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec,
+                #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1, #d16ba5
+            );
+            background-size: 300% 300%;
+            animation: gradient-move 2s ease-in-out infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+        }
+
+        /* 1. Notebook Math: gradiente animado y glow en hover */
+        .sidebar-header h2 {
+            color: white;
+            font-weight: bold;
+            position: relative;
+            z-index: 2;
+            transition: color 0.3s, background 0.3s;
+            background: none;
+            cursor: pointer;
+            -webkit-background-clip: unset;
+            -webkit-text-fill-color: unset;
+            background-clip: unset;
+            text-fill-color: unset;
+        }
+        .sidebar-header h2:hover {
+            color: transparent !important;
+            background: linear-gradient(90deg,
+                #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec,
+                #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1, #d16ba5
+            );
+            background-size: 300% 300%;
+            animation: gradient-move 6s ease-in-out infinite;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            text-shadow: none !important;
+        }
+
+        /* 2. Línea de abajo: gradiente animado, más delgada, slide-in al cargar */
+        .sidebar-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0.5rem;
+            left: 1rem;
+            width: calc(100% - 2rem);
+            height: 3px;
+            border-radius: 2px;
+            background: linear-gradient(90deg,
+                #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec,
+                #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1, #d16ba5
+            );
+            background-size: 300% 300%;
+            animation: gradient-move 6s ease-in-out infinite, slide-in 1s cubic-bezier(.77,0,.18,1) 0s 1;
+            z-index: 1;
+            transform: scaleX(0);
+            transform-origin: left;
+            opacity: 0;
+            animation-fill-mode: forwards;
+        }
+
+        .sidebar-header.loaded::after {
+            transform: scaleX(1);
+            opacity: 1;
+        }
+
+        /* 3. Animación de gradiente (ya existe, pero por si acaso) */
+        @keyframes gradient-move {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* 4. Glow para el texto */
+        @keyframes glow {
+            0% {
+                text-shadow: 0 0 8px #8aa7ec, 0 0 16px #d16ba5;
+            }
+            100% {
+                text-shadow: 0 0 24px #5ffbf1, 0 0 48px #c777b9;
+            }
+        }
+
+        /* 5. Slide-in para la línea */
+        @keyframes slide-in {
+            0% {
+                transform: scaleX(0);
+                opacity: 0;
+            }
+            100% {
+                transform: scaleX(1);
+                opacity: 1;
+            }
+        }
+
+        /* 6. GitHub icon: gradiente animado y pulse en hover */
+        header .fab.fa-github {
+            transition: color 0.3s, filter 0.3s;
+            color: white !important;
+            background: none;
+            filter: drop-shadow(0 0 0px #d16ba5);
+        }
+        header .fab.fa-github:hover {
+            color: transparent !important;
+            background: linear-gradient(90deg,
+                #d16ba5, #c777b9, #ba83ca, #aa8fd8, #9a9ae1, #8aa7ec,
+                #79b3f4, #69bff8, #52cffe, #41dfff, #46eefa, #5ffbf1, #d16ba5
+            );
+            background-size: 300% 300%;
+            animation: gradient-move 6s ease-in-out infinite, pulse 1.2s infinite alternate;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            text-fill-color: transparent;
+            filter: drop-shadow(0 0 8px #8aa7ec) drop-shadow(0 0 16px #d16ba5);
+        }
+
+        /* 7. Pulse para el icono */
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                filter: drop-shadow(0 0 0px #d16ba5);
+            }
+            100% {
+                transform: scale(1.12);
+                filter: drop-shadow(0 0 12px #5ffbf1);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans flex flex-col min-h-screen">
+    <div class="flex flex-grow">
+        <!-- Sidebar -->
+        <aside class="sidebar fixed lg:relative inset-y-0 left-0 w-72 shadow-lg z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out overflow-y-auto">
+            <div class="sticky top-0 sidebar-header z-10 py-3 px-4 flex justify-between items-center">
+                <h2 class="text-lg font-bold flex items-center">
+                    <img src="assets/img/icon_gradient.png" alt="Logo" class="w-6 h-6 mr-2">
+                    Notebook Math
+                </h2>
+                
+                <button class="sidebar-close p-2 rounded-lg hover:bg-opacity-10 hover:bg-white lg:hidden">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <nav class="py-4" id="sidebar-nav">
+                <!-- El contenido de la navegación se cargará desde el JSON -->
+                <div class="loading-container">
+                    <div class="loading-spinner"></div>
+                </div>
+            </nav>
+        </aside>
+        
+        <div class="sidebar-overlay fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div>
+        
+        <main class="flex-grow">
+            <header class="border-b sticky top-0 z-30 backdrop-blur-md" style="background-color: var(--header-bg);">
+                <div class="flex items-center justify-between px-4 py-3">
+                    <div class="flex items-center">
+                        <button class="sidebar-toggle mr-3 p-2 rounded-lg hover:bg-gray-100 lg:hidden">
+                            <i class="fas fa-bars"></i>
+                        </button>
+                        <h1 class="text-xl font-bold flex items-center" id="main-title">
+                            <img src="assets/img/icon_white.png" alt="Logo" class="w-7 h-7 mr-2">
+                            <span>Cargando...</span>
+                        </h1>
+                    </div>
+                    
+                    <div class="flex items-center space-x-2">
+                        <!-- Botón de edición eliminado -->
+                    </div>
+                </div>
+            </header>
+            
+            <div class="p-4 lg:p-6 flex flex-col lg:flex-row">
+                <div class="w-full lg:w-full lg:pr-6" id="main-content">
+                    <!-- El contenido principal se cargará desde el JSON -->
+                    <div class="loading-container">
+                        <div class="loading-spinner"></div>
+                    </div>
+                </div>
+                
+                <!-- Tabla de Contenidos (Escritorio) -->
+                <div class="w-full lg:w-1/4 mt-8 lg:mt-0 lg:ml-6">
+                    <div class="toc-wrapper rounded-lg p-4 shadow-aesthetic" style="background-color:var(--text-color) ;">
+                        <h3 class="font-medium mb-3 flex items-center" style="color: var(--text-color);">
+                            <i class="fas fa-list-ul text-accent mr-2"></i>
+                            En esta página
+                        </h3>
+                        <div class="toc-content" id="toc-desktop">
+                            <!-- La tabla de contenidos se generará automáticamente -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+                
+    <!-- Botón de volver arriba -->
+    <button id="back-to-top" class="fixed bottom-5 right-5 p-3 rounded-full shadow-md hover:shadow-lg focus:outline-none z-20 transform translate-y-20 opacity-0 transition-all duration-300 btn-gradient text-white">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+    
+    <!-- TOC Móvil -->
+    <div id="mobile-toc" class="fixed inset-x-0 bottom-0 z-40 shadow-lg rounded-t-xl transform translate-y-full transition-transform duration-300 ease-in-out" style="background-color: var(--card-bg); color: var(--text-color);">
+        <div class="flex justify-between items-center px-4 py-3 border-b">
+            <h3 class="font-medium flex items-center" style="color: var(--text-color);">
+                <i class="fas fa-list-ul text-accent mr-2"></i>
+                En esta página
+            </h3>
+            <button class="toc-close p-2 rounded-lg hover:bg-gray-100">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="p-4 max-h-96 overflow-y-auto">
+            <!-- La tabla de contenidos móvil se generará automáticamente -->
+        </div>
+    </div>
+    
+    <!-- Botón de TOC Móvil -->
+    <button id="toc-mobile-toggle" class="fixed bottom-5 left-5 p-3 rounded-full shadow-md hover:shadow-lg focus:outline-none z-20 lg:hidden" style="background-color: var(--card-bg); color: var(--text-color);">
+        <i class="fas fa-list-ul"></i>
+    </button>
+    
+    <!-- Overlay para TOC Móvil -->
+    <div id="toc-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden lg:hidden"></div>
+    
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Referencias a elementos del DOM
+        const sidebarToggle = document.querySelector('.sidebar-toggle');
+        const sidebar = document.querySelector('aside');
+        const sidebarClose = document.querySelector('.sidebar-close');
+        const sidebarOverlay = document.querySelector('.sidebar-overlay');
+        const backToTopBtn = document.getElementById('back-to-top');
+        const mobileToc = document.getElementById('mobile-toc');
+        const tocMobileToggle = document.getElementById('toc-mobile-toggle');
+        const tocOverlay = document.getElementById('toc-overlay');
+        const tocClose = document.querySelector('.toc-close');
+        const mainContent = document.getElementById('main-content');
+        const sidebarNav = document.getElementById('sidebar-nav');
+        const mainTitle = document.getElementById('main-title');
+        const tocDesktop = document.getElementById('toc-desktop');
+        
+        // Función para cargar el contenido desde JSON
+        async function loadContentFromJSON() {
+            try {
+                console.log('Intentando cargar el archivo JSON...');
+                
+                // Intentar cargar el archivo JSON
+                const response = await fetch('content.json');
+                
+                if (!response.ok) {
+                    console.error('Error HTTP:', response.status, response.statusText);
+                    throw new Error(`Error HTTP: ${response.status}`);
+                }
+                
+                console.log('Archivo JSON encontrado, procesando...');
+                const data = await response.json();
+                
+                // Renderizar el título principal
+                mainTitle.innerHTML = `<span class="js-title">${data.title}</span>`;
+                document.title = data.title + ' - Notebook';
+                
+                // Limpiar contenedores
+                mainContent.innerHTML = '';
+                sidebarNav.innerHTML = '';
+                
+                // Renderizar secciones
+                data.sections.forEach(section => {
+                    renderSection(section, mainContent);
+                    
+                    // Agregar al sidebar
+                    const sidebarLink = document.createElement('a');
+                    sidebarLink.href = `#${section.id}`;
+                    sidebarLink.className = 'sidebar-link';
+                    sidebarLink.textContent = section.title;
+                    sidebarNav.appendChild(sidebarLink);
+                });
+                
+                // Mostrar solo la primera sección por defecto (proposiciones)
+                if (data.sections.length > 0) {
+                    const firstSectionId = data.sections[0].id;
+                    updateTableOfContents(firstSectionId);
+                    
+                    // También resaltar el primer enlace del sidebar como activo
+                    const firstSidebarLink = sidebarNav.querySelector('.sidebar-link');
+                    if (firstSidebarLink) {
+                        firstSidebarLink.classList.add('active');
+                    }
+                }
+                
+                // Configurar eventos del sidebar
+                setupSidebarEvents();
+                
+                // Activar funcionalidades
+                activateCopyButtons();
+                
+            } catch (error) {
+                console.error('Error al cargar el contenido:', error);
+                
+                // Mensaje de error más descriptivo
+                mainContent.innerHTML = `
+                    <div class="bg-red-50 border-l-4 border-red-500 p-4 rounded-r">
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-exclamation-circle text-red-500 mr-2"></i>
+                            <span class="font-semibold">Error al cargar el contenido</span>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            No se pudo cargar el archivo content.json. Esto puede deberse a varias razones:
+                        </p>
+                        <ul class="list-disc ml-6 mb-4 text-gray-700">
+                            <li class="mb-2">El archivo no existe en la ubicación correcta</li>
+                            <li class="mb-2">Estás accediendo al sitio directamente desde el sistema de archivos (file://) en lugar de usar un servidor web</li>
+                            <li class="mb-2">El archivo JSON contiene errores de sintaxis</li>
+                        </ul>
+                        <p class="text-gray-700 mb-2"><strong>Solución:</strong></p>
+                        <ol class="list-decimal ml-6 text-gray-700">
+                            <li class="mb-2">Verifica que content.json existe en la misma carpeta que index.html</li>
+                            <li class="mb-2">Accede a la página a través de un servidor web como XAMPP (http://localhost/tu-proyecto/)</li>
+                            <li class="mb-2">Valida el JSON en un validador como jsonlint.com</li>
+                        </ol>
+                        <p class="mt-4 text-sm text-gray-500">Error técnico: ${error.message}</p>
+                    </div>
+                `;
+            }
+        }
+        
+        // Función para renderizar una sección
+        function renderSection(section, container) {
+            const sectionElement = document.createElement('section');
+            sectionElement.className = 'mb-10';
+            
+            // Título de la sección
+            const title = document.createElement('h2');
+            title.id = section.id;
+            title.className = 'text-2xl font-bold pb-2 border-b mb-4';
+            title.textContent = section.title;
+            sectionElement.appendChild(title);
+            
+            // Contenido de la sección
+            section.content.forEach(item => {
+                renderContentItem(item, sectionElement);
+            });
+            
+            container.appendChild(sectionElement);
+        }
+        
+        // Función para renderizar un elemento de contenido
+        function renderContentItem(item, container) {
+            switch (item.type) {
+                case 'paragraph':
+                    const p = document.createElement('p');
+                    p.className = 'mb-4 text-gray-700';
+                    p.innerHTML = item.text;
+                    container.appendChild(p);
+                    break;
+                    
+                case 'subheading':
+                    const h3 = document.createElement('h3');
+                    h3.id = item.id;
+                    h3.className = 'text-xl font-semibold mt-6 mb-3';
+                    h3.textContent = item.title;
+                    container.appendChild(h3);
+                    break;
+                    
+                case 'code':
+                    const codeBlock = document.createElement('div');
+                    codeBlock.className = 'relative bg-gray-800 text-white p-4 rounded-lg mb-6 font-mono text-sm';
+                    codeBlock.innerHTML = `
+                        <button class="copy-code absolute top-3 right-3 p-1 rounded text-gray-400 hover:text-white hover:bg-gray-700">
+                                <i class="fas fa-copy"></i>
+                            </button>
+                        <pre class="overflow-x-auto"><code>${escapeHtml(item.code)}</code></pre>
+                    `;
+                    container.appendChild(codeBlock);
+                    break;
+                    
+                case 'note':
+                    const note = document.createElement('div');
+                    note.className = 'bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r';
+                    note.innerHTML = `
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                            <span class="font-semibold">${item.title}</span>
+                        </div>
+                        <p class="text-gray-700">${item.text}</p>
+                    `;
+                    container.appendChild(note);
+                    break;
+                    
+                case 'warning':
+                    const warning = document.createElement('div');
+                    warning.className = 'bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-6 rounded-r';
+                    warning.innerHTML = `
+                        <div class="flex items-center mb-2">
+                            <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+                            <span class="font-semibold">${item.title}</span>
+                        </div>
+                        <p class="text-gray-700">${item.text}</p>
+                    `;
+                    container.appendChild(warning);
+                    break;
+                    
+                case 'list':
+                    const ul = document.createElement('ul');
+                    ul.className = 'list-disc pl-6 mb-6 text-gray-700';
+                    item.items.forEach(listItem => {
+                        const li = document.createElement('li');
+                        li.className = 'mb-2';
+                        li.innerHTML = listItem;
+                        ul.appendChild(li);
+                    });
+                    container.appendChild(ul);
+                    break;
+                    
+                case 'example':
+                    const example = document.createElement('div');
+                    example.className = 'border rounded-lg overflow-hidden mb-6';
+                    example.innerHTML = `
+                        <div class="bg-gray-100 font-medium px-4 py-2 border-b">${item.title}</div>
+                        <div class="p-4">
+                            <div class="relative bg-gray-800 text-white p-4 rounded-lg font-mono text-sm">
+                                <button class="copy-code absolute top-3 right-3 p-1 rounded text-gray-400 hover:text-white hover:bg-gray-700">
+                                    <i class="fas fa-copy"></i>
+                                </button>
+                                <pre class="overflow-x-auto"><code>${escapeHtml(item.code)}</code></pre>
+                            </div>
+                        </div>
+                    `;
+                    container.appendChild(example);
+                    break;
+            }
+        }
+        
+        // Función para escapar HTML
+        function escapeHtml(text) {
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+        
+        // Activar botones de copiar código
+        function activateCopyButtons() {
+            document.querySelectorAll('.copy-code').forEach(button => {
+                button.addEventListener('click', function() {
+                    const code = this.closest('div').querySelector('code').textContent;
+                    navigator.clipboard.writeText(code).then(() => {
+                        // Cambiar ícono temporalmente
+                        const icon = this.querySelector('i');
+                        icon.className = 'fas fa-check';
+                        setTimeout(() => {
+                            icon.className = 'fas fa-copy';
+                        }, 2000);
+                    });
+                });
+            });
+        }
+        
+        // Actualizar tabla de contenidos
+        function updateTableOfContents(activeSectionId = null) {
+            // Obtener todos los títulos h2 y h3
+            const headings = document.querySelectorAll('h2[id], h3[id]');
+            const tocContent = document.querySelector('#toc-desktop');
+            const mobileTocContent = document.querySelector('#mobile-toc .p-4');
+            
+            if (!tocContent || !mobileTocContent) return;
+            
+            // Limpiar tabla de contenidos actual
+            tocContent.innerHTML = '';
+            mobileTocContent.innerHTML = '';
+            
+            // Primero, oculta todas las secciones principales que no sean la sección activa
+            if (activeSectionId) {
+                document.querySelectorAll('section').forEach(section => {
+                    const sectionTitle = section.querySelector('h2');
+                    if (sectionTitle && sectionTitle.id !== activeSectionId) {
+                        section.style.display = 'none';
+                    } else {
+                        section.style.display = 'block';
+                    }
+                });
+            } else {
+                // Si no hay sección activa, mostrar todas
+                document.querySelectorAll('section').forEach(section => {
+                    section.style.display = 'block';
+                });
+            }
+            
+            let currentMainHeading = null;
+            let shouldShow = !activeSectionId; // Si no hay sección activa, mostrar todo
+            
+            // Recrear enlaces basados en los títulos actuales
+            headings.forEach(heading => {
+                const id = heading.id;
+                const text = heading.textContent.trim();
+                const isMainHeading = heading.tagName.toLowerCase() === 'h2';
+                
+                // Si es un título principal (h2)
+                if (isMainHeading) {
+                    currentMainHeading = id;
+                    shouldShow = !activeSectionId || activeSectionId === id;
+                    
+                    // Si es la sección activa o no hay sección activa, mostrar el enlace
+                    if (!activeSectionId || activeSectionId === id) {
+                // Crear enlace para TOC de escritorio
+                const link = document.createElement('a');
+                link.href = `#${id}`;
+                        link.dataset.sectionId = id;
+                        link.className = 'toc-link block py-1.5 text-gray-600 hover:text-primary border-l-2 border-transparent pl-3 hover:border-primary mb-1';
+                link.textContent = text;
+                tocContent.appendChild(link);
+                
+                // Crear enlace para TOC móvil
+                const mobileLink = document.createElement('a');
+                mobileLink.href = `#${id}`;
+                        mobileLink.dataset.sectionId = id;
+                        mobileLink.className = 'block py-2 px-3 mb-1 border-l-2 border-transparent hover:border-primary hover:bg-gray-50 rounded-r-md transition-all duration-200';
+                mobileLink.textContent = text;
+                mobileTocContent.appendChild(mobileLink);
+                    }
+                } 
+                // Si es un subtítulo (h3) y está dentro de la sección activa o no hay sección activa
+                else if (shouldShow) {
+                    // Crear enlace para TOC de escritorio
+                    const link = document.createElement('a');
+                    link.href = `#${id}`;
+                    link.dataset.parentSection = currentMainHeading;
+                    link.className = 'toc-link block py-1.5 text-gray-600 hover:text-primary pl-6 mb-1 text-sm';
+                    link.textContent = text;
+                    tocContent.appendChild(link);
+                    
+                    // Crear enlace para TOC móvil
+                    const mobileLink = document.createElement('a');
+                    mobileLink.href = `#${id}`;
+                    mobileLink.dataset.parentSection = currentMainHeading;
+                    mobileLink.className = 'block py-2 px-3 pl-6 mb-1 border-l-2 border-transparent hover:border-primary hover:bg-gray-50 rounded-r-md transition-all duration-200 text-sm';
+                    mobileLink.textContent = text;
+                    mobileTocContent.appendChild(mobileLink);
+                }
+            });
+            
+            // Agregar eventos a los enlaces del TOC móvil
+            document.querySelectorAll('#mobile-toc a').forEach(link => {
+                link.addEventListener('click', () => {
+                    if (mobileToc) {
+                        mobileToc.classList.add('translate-y-full');
+                        if (tocOverlay) tocOverlay.classList.add('hidden');
+                    }
+                });
+            });
+
+            // Ajusta el scroll para que el header no tape el título
+            setupTOCScrollOffset();
+        }
+        
+        // Ajusta el scroll para que el header no tape el título
+        function setupTOCScrollOffset() {
+            // Selecciona todos los enlaces del TOC (escritorio y móvil)
+            document.querySelectorAll('.toc-link, #mobile-toc a').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    // Solo si es un hash interno
+                    if (this.hash) {
+                        const target = document.querySelector(this.hash);
+                        if (target) {
+                            e.preventDefault();
+                            // Altura del header (ajusta si tu header es más alto)
+                            const header = document.querySelector('header');
+                            const headerHeight = header ? header.offsetHeight : 0;
+                            // Posición del elemento menos el header
+                            const y = target.getBoundingClientRect().top + window.pageYOffset - headerHeight - 10; // -10px extra por margen
+                            window.scrollTo({ top: y, behavior: 'smooth' });
+                            // Opcional: actualiza el hash en la URL
+                            history.replaceState(null, null, this.hash);
+                        }
+                    }
+                });
+            });
+        }
+        
+        // Agregar eventos al sidebar después del renderizado
+        function setupSidebarEvents() {
+            document.querySelectorAll('.sidebar-link').forEach(link => {
+                link.addEventListener('click', (e) => {
+                    // ID de la sección a la que se dirige el enlace
+                    const sectionId = link.getAttribute('href').substring(1);
+                    
+                    // Actualizar la tabla de contenidos para mostrar solo los subtemas de esta sección
+                    updateTableOfContents(sectionId);
+                    
+                    // Resaltar el enlace activo del sidebar
+                    document.querySelectorAll('.sidebar-link').forEach(l => l.classList.remove('active'));
+                    link.classList.add('active');
+                    
+                    // Actualizar el título principal con el texto del enlace seleccionado
+                    const mainTitleSpan = document.querySelector('#main-title span');
+                    if (mainTitleSpan) {
+                        mainTitleSpan.textContent = link.textContent;
+                    }
+                });
+            });
+        }
+        
+        // Funciones de UI y eventos
+        
+        // Sidebar Toggle
+        function toggleSidebar() {
+            if (sidebar) {
+                sidebar.classList.toggle('translate-x-0');
+                sidebar.classList.toggle('-translate-x-full');
+                if (sidebarOverlay) {
+                    sidebarOverlay.classList.toggle('hidden');
+                }
+            }
+        }
+        
+        // Eventos para UI
+        if (sidebarToggle) {
+            sidebarToggle.addEventListener('click', toggleSidebar);
+        }
+        
+        if (sidebarClose) {
+            sidebarClose.addEventListener('click', toggleSidebar);
+        }
+        
+        if (sidebarOverlay) {
+            sidebarOverlay.addEventListener('click', toggleSidebar);
+        }
+        
+        // TOC móvil
+        if (tocMobileToggle && mobileToc && tocOverlay) {
+            tocMobileToggle.addEventListener('click', function() {
+                mobileToc.classList.toggle('translate-y-full');
+                tocOverlay.classList.toggle('hidden');
+            });
+            
+            if (tocClose) {
+                tocClose.addEventListener('click', function() {
+                    mobileToc.classList.add('translate-y-full');
+                    tocOverlay.classList.add('hidden');
+                });
+            }
+            
+            tocOverlay.addEventListener('click', function() {
+                mobileToc.classList.add('translate-y-full');
+                tocOverlay.classList.add('hidden');
+            });
+        }
+        
+        // Botón volver arriba
+        if (backToTopBtn) {
+            window.addEventListener('scroll', function() {
+                if (window.scrollY > 300) {
+                    backToTopBtn.classList.remove('translate-y-20', 'opacity-0');
+                } else {
+                    backToTopBtn.classList.add('translate-y-20', 'opacity-0');
+                }
+            });
+            
+            backToTopBtn.addEventListener('click', function() {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        }
+        
+        // Cargar contenido al iniciar
+        loadContentFromJSON();
+
+        // Añadir el enlace de GitHub
+        const headerRight = document.querySelector('header .flex.items-center.space-x-2');
+        if (headerRight) {
+            const githubLink = document.createElement('a');
+            githubLink.href = 'https://github.com/Neosowo';
+            githubLink.target = '_blank';
+            githubLink.rel = 'noopener noreferrer';
+            githubLink.innerHTML = '<i class="fab fa-github" style="font-size: 1.5rem; color: white;"></i>';
+            githubLink.style.marginLeft = 'auto';
+            headerRight.appendChild(githubLink);
+        }
+
+        // Añade la clase 'loaded' para activar la animación de la línea
+        setTimeout(() => {
+            document.querySelector('.sidebar-header').classList.add('loaded');
+        }, 100); // pequeño delay para que la animación sea visible
+    });
+    </script>
+</body>
+</html>

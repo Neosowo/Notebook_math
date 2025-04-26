@@ -1,0 +1,157 @@
+{
+  "title": "Introducción a la Lógica Matemática y Funciones",
+  "sections": [
+    {
+      "id": "logica-matematica",
+      "title": "Lógica Matemática",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "La lógica matemática estudia las reglas formales que permiten analizar razonamientos, demostraciones y estructuras matemáticas. Es la base del pensamiento riguroso y del desarrollo de algoritmos y sistemas computacionales."
+        },
+        {
+          "type": "paragraph",
+          "text": "El elemento básico de la lógica es la proposición: un enunciado que puede ser clasificado como verdadero o falso, pero nunca ambos a la vez."
+        },
+        {
+          "type": "subheading",
+          "id": "valores-verdad",
+          "title": "Valores de Verdad"
+        },
+        {
+          "type": "paragraph",
+          "text": "Cada proposición tiene un único valor de verdad, que puede ser:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<strong>Verdadero (V):</strong> Representado generalmente como 1.",
+            "<strong>Falso (F):</strong> Representado como 0."
+          ]
+        },
+        {
+          "type": "subheading",
+          "id": "operadores-logicos",
+          "title": "Operadores Lógicos Básicos"
+        },
+        {
+          "type": "paragraph",
+          "text": "Los operadores permiten combinar proposiciones para formar nuevas proposiciones. Los principales operadores son:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<strong>Negación (¬P):</strong> Invierte el valor de verdad de P.",
+            "<strong>Conjunción (P ∧ Q):</strong> Es verdadera solo si ambas proposiciones son verdaderas.",
+            "<strong>Disyunción (P ∨ Q):</strong> Es verdadera si al menos una proposición es verdadera.",
+            "<strong>Condicional (P → Q):</strong> Se interpreta como 'si P entonces Q'. Solo es falsa si P es verdadera y Q es falsa.",
+            "<strong>Bicondicional (P ↔ Q):</strong> Es verdadera si P y Q tienen el mismo valor de verdad."
+          ]
+        },
+        {
+          "type": "subheading",
+          "id": "tablas-verdad",
+          "title": "Tablas de Verdad"
+        },
+        {
+          "type": "paragraph",
+          "text": "Las tablas de verdad muestran cómo varía el valor de una proposición compuesta según los valores de sus componentes. Son fundamentales para verificar la validez de argumentos."
+        },
+        {
+          "type": "code",
+          "language": "text",
+          "code": "Tabla de verdad para la conjunción (AND, ∧):\n\nP | Q | P ∧ Q\n--|---|------\nV | V |   V\nV | F |   F\nF | V |   F\nF | F |   F\n\nTabla de verdad para la disyunción (OR, ∨):\n\nP | Q | P ∨ Q\n--|---|------\nV | V |   V\nV | F |   V\nF | V |   V\nF | F |   F"
+        },
+        {
+          "type": "subheading",
+          "id": "aplicaciones-logica",
+          "title": "Aplicaciones de la Lógica Matemática"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Diseño de circuitos electrónicos digitales.",
+            "Programación de computadoras y algoritmos.",
+            "Construcción de pruebas formales en matemáticas.",
+            "Desarrollo de inteligencia artificial y sistemas expertos."
+          ]
+        }
+      ]
+    },
+    {
+      "id": "funciones-matematicas",
+      "title": "Funciones Matemáticas",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "En matemáticas, una función es una relación que asigna a cada elemento de un conjunto de entrada exactamente un único elemento en un conjunto de salida. Las funciones permiten modelar fenómenos naturales y resolver problemas en diversas áreas."
+        },
+        {
+          "type": "paragraph",
+          "text": "Formalmente, si A y B son conjuntos, una función f de A a B (f: A → B) es una regla que asocia a cada elemento de A exactamente un elemento de B."
+        },
+        {
+          "type": "subheading",
+          "id": "notacion-funcional",
+          "title": "Notación de Funciones"
+        },
+        {
+          "type": "paragraph",
+          "text": "Las funciones suelen representarse mediante letras como f, g o h. La notación f(x) se lee 'f evaluada en x' y representa el valor de la función para una entrada específica."
+        },
+        {
+          "type": "code",
+          "language": "text",
+          "code": "Ejemplo de función:\nf(x) = x² + 2x + 1\n\nPara x = 3:\nf(3) = 3² + 2(3) + 1\nf(3) = 9 + 6 + 1\nf(3) = 16"
+        },
+        {
+          "type": "subheading",
+          "id": "clasificacion-funciones",
+          "title": "Clasificación de Funciones"
+        },
+        {
+          "type": "list",
+          "items": [
+            "<strong>Función inyectiva (uno a uno):</strong> Cada elemento del codominio es imagen de, como máximo, un único elemento del dominio.",
+            "<strong>Función sobreyectiva (sobre):</strong> Cada elemento del codominio tiene al menos un elemento del dominio asignado.",
+            "<strong>Función biyectiva:</strong> Es simultáneamente inyectiva y sobreyectiva. Establece una correspondencia perfecta entre los conjuntos."
+          ]
+        },
+        {
+          "type": "subheading",
+          "id": "funciones-compuestas",
+          "title": "Funciones Compuestas"
+        },
+        {
+          "type": "paragraph",
+          "text": "Dadas dos funciones f: A → B y g: B → C, la función compuesta g ∘ f se define como (g ∘ f)(x) = g(f(x)). La composición de funciones permite construir nuevas funciones a partir de otras."
+        },
+        {
+          "type": "code",
+          "language": "text",
+          "code": "Ejemplo de función compuesta:\nSi f(x) = x + 2 y g(x) = 3x,\nEntonces (g ∘ f)(x) = g(f(x)) = 3(x + 2) = 3x + 6."
+        },
+        {
+          "type": "subheading",
+          "id": "aplicaciones-funciones",
+          "title": "Aplicaciones de las Funciones"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Modelar crecimiento poblacional o financiero.",
+            "Describir trayectorias de objetos en física.",
+            "Programar comportamientos en algoritmos computacionales.",
+            "Analizar cambios de variables en la ingeniería y ciencia."
+          ]
+        },
+        {
+          "type": "note",
+          "title": "Dato Importante",
+          "text": "Una función queda completamente determinada por su regla de asignación, su dominio y su codominio. Modificar cualquiera de estos tres elementos cambia la función."
+        }
+      ]
+    }
+  ],
+  "lastUpdated": "2025-04-26T21:00:00.000Z"
+}
