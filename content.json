@@ -1,157 +1,166 @@
 {
-  "title": "Introducción a la Lógica Matemática y Funciones",
+  "title": "Matemáticas Generales",
   "sections": [
     {
-      "id": "logica-matematica",
-      "title": "Lógica Matemática",
+      "id": "logica",
+      "title": "Capítulo 1: Lógica",
       "content": [
         {
           "type": "paragraph",
-          "text": "La lógica matemática estudia las reglas formales que permiten analizar razonamientos, demostraciones y estructuras matemáticas. Es la base del pensamiento riguroso y del desarrollo de algoritmos y sistemas computacionales."
+          "text": "La lógica es la base del razonamiento matemático, permitiendo construir y analizar argumentos de manera rigurosa."
         },
         {
           "type": "paragraph",
-          "text": "El elemento básico de la lógica es la proposición: un enunciado que puede ser clasificado como verdadero o falso, pero nunca ambos a la vez."
+          "text": "La lógica es la base del razonamiento matemático, permitiendo construir y analizar argumentos de manera rigurosa."
         },
         {
           "type": "subheading",
-          "id": "valores-verdad",
-          "title": "Valores de Verdad"
-        },
-        {
-          "type": "paragraph",
-          "text": "Cada proposición tiene un único valor de verdad, que puede ser:"
+          "id": "importancia-logica",
+          "title": "Importancia de la Lógica"
         },
         {
           "type": "list",
           "items": [
-            "<strong>Verdadero (V):</strong> Representado generalmente como 1.",
-            "<strong>Falso (F):</strong> Representado como 0."
+            "Permite construir argumentos válidos.",
+            "Es la base de las demostraciones matemáticas.",
+            "Se aplica en programación y electrónica."
           ]
-        },
-        {
-          "type": "subheading",
-          "id": "operadores-logicos",
-          "title": "Operadores Lógicos Básicos"
-        },
-        {
-          "type": "paragraph",
-          "text": "Los operadores permiten combinar proposiciones para formar nuevas proposiciones. Los principales operadores son:"
-        },
-        {
-          "type": "list",
-          "items": [
-            "<strong>Negación (¬P):</strong> Invierte el valor de verdad de P.",
-            "<strong>Conjunción (P ∧ Q):</strong> Es verdadera solo si ambas proposiciones son verdaderas.",
-            "<strong>Disyunción (P ∨ Q):</strong> Es verdadera si al menos una proposición es verdadera.",
-            "<strong>Condicional (P → Q):</strong> Se interpreta como 'si P entonces Q'. Solo es falsa si P es verdadera y Q es falsa.",
-            "<strong>Bicondicional (P ↔ Q):</strong> Es verdadera si P y Q tienen el mismo valor de verdad."
-          ]
-        },
-        {
-          "type": "subheading",
-          "id": "tablas-verdad",
-          "title": "Tablas de Verdad"
-        },
-        {
-          "type": "paragraph",
-          "text": "Las tablas de verdad muestran cómo varía el valor de una proposición compuesta según los valores de sus componentes. Son fundamentales para verificar la validez de argumentos."
         },
         {
           "type": "code",
-          "language": "text",
-          "code": "Tabla de verdad para la conjunción (AND, ∧):\n\nP | Q | P ∧ Q\n--|---|------\nV | V |   V\nV | F |   F\nF | V |   F\nF | F |   F\n\nTabla de verdad para la disyunción (OR, ∨):\n\nP | Q | P ∨ Q\n--|---|------\nV | V |   V\nV | F |   V\nF | V |   V\nF | F |   F"
+          "code": "def saludar():\n    print('Hola Mundo')"
         },
         {
-          "type": "subheading",
-          "id": "aplicaciones-logica",
-          "title": "Aplicaciones de la Lógica Matemática"
+          "type": "note",
+          "title": "Dato Curioso",
+          "text": "La lógica booleana es fundamental en el diseño de circuitos digitales."
         },
         {
-          "type": "list",
-          "items": [
-            "Diseño de circuitos electrónicos digitales.",
-            "Programación de computadoras y algoritmos.",
-            "Construcción de pruebas formales en matemáticas.",
-            "Desarrollo de inteligencia artificial y sistemas expertos."
-          ]
+          "type": "warning",
+          "title": "Advertencia",
+          "text": "No todos los razonamientos intuitivos son válidos en lógica formal."
+        },
+        {
+          "type": "example",
+          "title": "Ejemplo de Código en Python",
+          "code": "if True:\n    print('La condición es verdadera')"
+        },
+        {
+          "type": "latex",
+          "latex": "\\int_{a}^{b} f(x) \\,dx = F(b) - F(a)"
         }
       ]
     },
     {
-      "id": "funciones-matematicas",
-      "title": "Funciones Matemáticas",
+      "id": "conjuntos",
+      "title": "Capítulo 2: Conjuntos",
       "content": [
         {
           "type": "paragraph",
-          "text": "En matemáticas, una función es una relación que asigna a cada elemento de un conjunto de entrada exactamente un único elemento en un conjunto de salida. Las funciones permiten modelar fenómenos naturales y resolver problemas en diversas áreas."
-        },
+          "text": "La teoría de conjuntos estudia colecciones de objetos, fundamentales para toda la matemática moderna."
+        }
+      ]
+    },
+    {
+      "id": "numeros-reales",
+      "title": "Capítulo 3: Números Reales",
+      "content": [
         {
           "type": "paragraph",
-          "text": "Formalmente, si A y B son conjuntos, una función f de A a B (f: A → B) es una regla que asocia a cada elemento de A exactamente un elemento de B."
-        },
-        {
-          "type": "subheading",
-          "id": "notacion-funcional",
-          "title": "Notación de Funciones"
-        },
-        {
-          "type": "paragraph",
-          "text": "Las funciones suelen representarse mediante letras como f, g o h. La notación f(x) se lee 'f evaluada en x' y representa el valor de la función para una entrada específica."
-        },
-        {
-          "type": "code",
-          "language": "text",
-          "code": "Ejemplo de función:\nf(x) = x² + 2x + 1\n\nPara x = 3:\nf(3) = 3² + 2(3) + 1\nf(3) = 9 + 6 + 1\nf(3) = 16"
-        },
-        {
-          "type": "subheading",
-          "id": "clasificacion-funciones",
-          "title": "Clasificación de Funciones"
-        },
-        {
-          "type": "list",
-          "items": [
-            "<strong>Función inyectiva (uno a uno):</strong> Cada elemento del codominio es imagen de, como máximo, un único elemento del dominio.",
-            "<strong>Función sobreyectiva (sobre):</strong> Cada elemento del codominio tiene al menos un elemento del dominio asignado.",
-            "<strong>Función biyectiva:</strong> Es simultáneamente inyectiva y sobreyectiva. Establece una correspondencia perfecta entre los conjuntos."
-          ]
-        },
-        {
-          "type": "subheading",
-          "id": "funciones-compuestas",
-          "title": "Funciones Compuestas"
-        },
+          "text": "Los números reales incluyen racionales e irracionales, y son esenciales para medir y comparar cantidades."
+        }
+      ]
+    },
+    {
+      "id": "funciones-variable-real",
+      "title": "Capítulo 4: Funciones de una variable real",
+      "content": [
         {
           "type": "paragraph",
-          "text": "Dadas dos funciones f: A → B y g: B → C, la función compuesta g ∘ f se define como (g ∘ f)(x) = g(f(x)). La composición de funciones permite construir nuevas funciones a partir de otras."
-        },
+          "text": "Las funciones de una variable real modelan relaciones entre cantidades y permiten describir fenómenos naturales y matemáticos."
+        }
+      ]
+    },
+    {
+      "id": "trigonometria",
+      "title": "Capítulo 5: Trigonometría",
+      "content": [
         {
-          "type": "code",
-          "language": "text",
-          "code": "Ejemplo de función compuesta:\nSi f(x) = x + 2 y g(x) = 3x,\nEntonces (g ∘ f)(x) = g(f(x)) = 3(x + 2) = 3x + 6."
-        },
+          "type": "paragraph",
+          "text": "La trigonometría estudia las relaciones entre los lados y ángulos de los triángulos, siendo fundamental en la geometría y la física."
+        }
+      ]
+    },
+    {
+      "id": "matrices-sistemas",
+      "title": "Capítulo 6: Matrices y sistemas de ecuaciones e inecuaciones",
+      "content": [
         {
-          "type": "subheading",
-          "id": "aplicaciones-funciones",
-          "title": "Aplicaciones de las Funciones"
-        },
+          "type": "paragraph",
+          "text": "Las matrices y los sistemas permiten representar y resolver múltiples ecuaciones e inecuaciones de forma estructurada."
+        }
+      ]
+    },
+    {
+      "id": "geometria-plana",
+      "title": "Capítulo 7: Geometría plana",
+      "content": [
         {
-          "type": "list",
-          "items": [
-            "Modelar crecimiento poblacional o financiero.",
-            "Describir trayectorias de objetos en física.",
-            "Programar comportamientos en algoritmos computacionales.",
-            "Analizar cambios de variables en la ingeniería y ciencia."
-          ]
-        },
+          "type": "paragraph",
+          "text": "La geometría plana estudia figuras en dos dimensiones como triángulos, círculos y polígonos, analizando sus propiedades."
+        }
+      ]
+    },
+    {
+      "id": "geometria-espacio",
+      "title": "Capítulo 8: Geometría del espacio",
+      "content": [
         {
-          "type": "note",
-          "title": "Dato Importante",
-          "text": "Una función queda completamente determinada por su regla de asignación, su dominio y su codominio. Modificar cualquiera de estos tres elementos cambia la función."
+          "type": "paragraph",
+          "text": "La geometría del espacio se enfoca en figuras tridimensionales como prismas, esferas y cilindros."
+        }
+      ]
+    },
+    {
+      "id": "numeros-complejos",
+      "title": "Capítulo 9: Números complejos",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Los números complejos amplían los reales para resolver ecuaciones que no tienen soluciones reales."
+        }
+      ]
+    },
+    {
+      "id": "vectores",
+      "title": "Capítulo 10: Vectores",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "Los vectores representan magnitudes que tienen dirección y sentido, y son esenciales en física y matemáticas."
+        }
+      ]
+    },
+    {
+      "id": "geometria-analitica-r2",
+      "title": "Capítulo 11: Geometría analítica en R2",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "La geometría analítica combina el álgebra y la geometría para estudiar figuras en el plano mediante coordenadas."
+        }
+      ]
+    },
+    {
+      "id": "estadistica-probabilidades",
+      "title": "Capítulo 12: Estadística y probabilidades",
+      "content": [
+        {
+          "type": "paragraph",
+          "text": "La estadística y la probabilidad permiten analizar datos, hacer predicciones y entender fenómenos aleatorios."
         }
       ]
     }
   ],
-  "lastUpdated": "2025-04-26T21:00:00.000Z"
+  "lastUpdated": "2025-04-27T00:00:00.000Z"
 }
