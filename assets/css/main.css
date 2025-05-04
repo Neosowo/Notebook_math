@@ -20,6 +20,7 @@
         width: 100%;
         overflow-x: hidden;
         height: -webkit-fill-available;
+        scroll-padding-top: 70px; /* Ajustar según la altura de tu header */
     }
     
     /* Aplicar Poppins a todos los elementos */
@@ -110,6 +111,8 @@
     .sidebar-link {
         color: var(--text-color);
         opacity: 0.9;
+        scroll-behavior: auto; /* Permitir control personalizado */
+        scroll-padding-top: 0; /* Sin padding al hacer scroll */
     }
     
     aside nav a:hover,
@@ -694,6 +697,7 @@
         border-left: 3px solid transparent;
         font-size: 0.95rem;
         text-decoration: none;
+        cursor: pointer; /* Asegurar que se vea clickeable */
     }
     
     .sidebar-link:hover, 
@@ -712,6 +716,7 @@
         margin-bottom: 0.3rem;
         border-radius: 0 0.25rem 0.25rem 0;
         transition: all 0.2s ease;
+        scroll-margin-top: 70px; /* Ajustar según la altura de tu header */
     }
 
     .toc-content a:hover,
@@ -1379,4 +1384,37 @@
             transition-duration: 0.01ms !important;
             scroll-behavior: auto !important;
         }
+    }
+
+    /* JavaScript necesitará usar este selector para los enlaces del sidebar */
+    .sidebar-link[data-scroll-top="true"] {
+        /* Clase especial para enlaces que deben ir al tope de la página */
+        scroll-margin-top: 0;
+    }
+
+    /* Mantener comportamiento específico del TOC */
+    .toc-content a {
+        display: block;
+        color: var(--text-color);
+        padding: 0.4rem 0.6rem;
+        border-left: 2px solid transparent;
+        margin-bottom: 0.3rem;
+        border-radius: 0 0.25rem 0.25rem 0;
+        transition: all 0.2s ease;
+        scroll-margin-top: 70px; /* Ajustar según la altura de tu header */
+    }
+
+    /* Scroll-padding para el documento completo - ajustar para considerar la barra superior */
+    html {
+        scroll-behavior: smooth;
+        width: 100%;
+        overflow-x: hidden;
+        height: -webkit-fill-available;
+        scroll-padding-top: 70px; /* Ajustar según la altura de tu header */
+    }
+
+    /* Asegurar que los enlaces del TOC mantengan su comportamiento actual */
+    .toc-content a,
+    #mobile-toc a {
+        scroll-margin-top: 70px; /* Ajustar según la altura de tu header */
     }

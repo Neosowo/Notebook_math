@@ -142,6 +142,8 @@
     <!-- Overlay para TOC Móvil -->
     <div id="toc-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden lg:hidden"></div>
     
+    <!-- Scripts -->
+    <script src="assets/js/sidebar-scroll.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Referencias a elementos del DOM
@@ -220,9 +222,11 @@
                     
                     // Agregar al sidebar
                     const sidebarLink = document.createElement('a');
-                    sidebarLink.href = `#${section.id}`;
+                    sidebarLink.href = `#`;
+                    sidebarLink.setAttribute('data-section-id', section.id);
                     sidebarLink.className = 'sidebar-link';
                     sidebarLink.textContent = section.title;
+                    sidebarLink.setAttribute('data-scroll-top', 'true');
                     sidebarNav.appendChild(sidebarLink);
                 });
                 
@@ -546,8 +550,11 @@
         function setupSidebarEvents() {
             document.querySelectorAll('.sidebar-link').forEach(link => {
                 link.addEventListener('click', (e) => {
-                    // ID de la sección a la que se dirige el enlace
-                    const sectionId = link.getAttribute('href').substring(1);
+                    // Ya no es necesario prevenir el evento predeterminado aquí
+                    // porque se maneja en sidebar-scroll.js
+                    
+                    // ID de la sección a la que corresponde el enlace
+                    const sectionId = link.getAttribute('data-section-id');
                     
                     // Actualizar la tabla de contenidos para mostrar solo los subtemas de esta sección
                     updateTableOfContents(sectionId);
@@ -561,6 +568,12 @@
                     if (mainTitleSpan) {
                         mainTitleSpan.textContent = link.textContent;
                     }
+                    
+                    // Hacer scroll a la parte superior de la página
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
                 });
             });
         }
@@ -704,6 +717,5 @@
     });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
 </body>
 </html>
