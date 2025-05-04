@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <title>Notebook Math</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <meta name="description" content="Notebook Math: Apuntes, ejemplos y teoría matemática en un solo lugar.">
@@ -45,7 +45,7 @@
         }
     </script>
 </head>
-<body class="bg-gray-50 font-sans flex flex-col min-h-screen">
+<body class="bg-gray-50 font-sans flex flex-col min-h-screen touch-device overflow-fix">
     <div class="flex flex-grow">
         <!-- Sidebar -->
         <aside id="notebook_math_title" class="sidebar fixed lg:relative inset-y-0 left-0 w-72 shadow-lg z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out overflow-y-auto">
@@ -70,7 +70,7 @@
         
         <div class="sidebar-overlay fixed inset-0 bg-black bg-opacity-50 z-40 hidden lg:hidden"></div>
         
-        <main class="flex-grow">
+        <main class="flex-grow overflow-fix">
             <header class="border-b sticky top-0 z-30 backdrop-blur-md" style="background-color: var(--header-bg);">
                 <div class="flex items-center justify-between px-4 py-3">
                     <div class="flex items-center">
@@ -89,8 +89,8 @@
                 </div>
             </header>
             
-            <div class="p-4 lg:p-6 flex flex-col lg:flex-row">
-                <div class="w-full lg:w-full lg:pr-6" id="main-content">
+            <div class="p-4 lg:p-6 flex flex-col lg:flex-row overflow-fix">
+                <div class="w-full lg:w-full lg:pr-6 overflow-fix" id="main-content">
                     <!-- El contenido principal se cargará desde el JSON -->
                     <div class="loading-container">
                         <div class="loading-spinner"></div>
@@ -159,6 +159,37 @@
         const mainTitle = document.getElementById('main-title');
         const tocDesktop = document.getElementById('toc-desktop');
         
+        // Detectar si es un dispositivo táctil
+        const isTouchDevice = () => {
+            return 'ontouchstart' in window || navigator.maxTouchPoints > 0 || navigator.msMaxTouchPoints > 0;
+        };
+        
+        // Aplicar clase para dispositivos táctiles
+        if (isTouchDevice()) {
+            document.body.classList.add('touch-device');
+        }
+        
+        // Prevenir zoom en dispositivos móviles
+        document.addEventListener('touchstart', function(e) {
+            if (e.touches.length > 1) {
+                e.preventDefault();
+            }
+        }, { passive: false });
+        
+        // Detectar orientación y ajustar la interfaz
+        const updateOrientation = () => {
+            const isPortrait = window.innerHeight > window.innerWidth;
+            document.body.classList.toggle('portrait', isPortrait);
+            document.body.classList.toggle('landscape', !isPortrait);
+        };
+        
+        // Inicializar orientación
+        updateOrientation();
+        
+        // Escuchar cambios de orientación
+        window.addEventListener('resize', updateOrientation);
+        window.addEventListener('orientationchange', updateOrientation);
+
         // Función para cargar el contenido desde JSON
         async function loadContentFromJSON() {
             try {
@@ -536,7 +567,7 @@
         
         // Funciones de UI y eventos
         
-        // Sidebar Toggle
+        // Sidebar Toggle con cierre automático en clic fuera (para móviles)
         function toggleSidebar() {
             if (sidebar) {
                 sidebar.classList.toggle('translate-x-0');
@@ -544,20 +575,50 @@
                 if (sidebarOverlay) {
                     sidebarOverlay.classList.toggle('hidden');
                 }
+                
+                // Cierra sidebar automáticamente después de clic en enlaces en móvil
+                if (window.innerWidth < 1024 && sidebar.classList.contains('translate-x-0')) {
+                    document.querySelectorAll('.sidebar-link').forEach(link => {
+                        link.addEventListener('click', function() {
+                            setTimeout(() => toggleSidebar(), 300);
+                        }, { once: true });
+                    });
+                }
+            }
+        }
+        
+        // Evitar scroll del body cuando el sidebar o TOC están abiertos
+        function manageBodyScroll() {
+            const sidebarOpen = sidebar && sidebar.classList.contains('translate-x-0');
+            const tocOpen = mobileToc && !mobileToc.classList.contains('translate-y-full');
+            
+            if ((sidebarOpen || tocOpen) && window.innerWidth < 1024) {
+                document.body.style.overflow = 'hidden';
+            } else {
+                document.body.style.overflow = '';
             }
         }
         
         // Eventos para UI
         if (sidebarToggle) {
-            sidebarToggle.addEventListener('click', toggleSidebar);
+            sidebarToggle.addEventListener('click', function() {
+                toggleSidebar();
+                manageBodyScroll();
+            });
         }
         
         if (sidebarClose) {
-            sidebarClose.addEventListener('click', toggleSidebar);
+            sidebarClose.addEventListener('click', function() {
+                toggleSidebar();
+                manageBodyScroll();
+            });
         }
         
         if (sidebarOverlay) {
-            sidebarOverlay.addEventListener('click', toggleSidebar);
+            sidebarOverlay.addEventListener('click', function() {
+                toggleSidebar();
+                manageBodyScroll();
+            });
         }
         
         // TOC móvil
@@ -565,18 +626,21 @@
             tocMobileToggle.addEventListener('click', function() {
                 mobileToc.classList.toggle('translate-y-full');
                 tocOverlay.classList.toggle('hidden');
+                manageBodyScroll();
             });
             
             if (tocClose) {
                 tocClose.addEventListener('click', function() {
                     mobileToc.classList.add('translate-y-full');
                     tocOverlay.classList.add('hidden');
+                    manageBodyScroll();
                 });
             }
             
             tocOverlay.addEventListener('click', function() {
                 mobileToc.classList.add('translate-y-full');
                 tocOverlay.classList.add('hidden');
+                manageBodyScroll();
             });
         }
         
@@ -594,6 +658,29 @@
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             });
         }
+        
+        // Desactivar doble tap para zoom en dispositivos móviles
+        let lastTapTime = 0;
+        document.addEventListener('touchend', function(e) {
+            const currentTime = new Date().getTime();
+            const tapLength = currentTime - lastTapTime;
+            if (tapLength < 300 && tapLength > 0) {
+                e.preventDefault();
+            }
+            lastTapTime = currentTime;
+        });
+        
+        // Mejorar rendimiento en scroll
+        let ticking = false;
+        window.addEventListener('scroll', function() {
+            if (!ticking) {
+                window.requestAnimationFrame(function() {
+                    // Aplicar efectos basados en scroll si los hay
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        });
         
         // Cargar contenido al iniciar
         loadContentFromJSON();

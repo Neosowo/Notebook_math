@@ -8,6 +8,18 @@
         color: var(--text-color);
         margin: 0;
         padding: 0;
+        width: 100%;
+        overflow-x: hidden;
+        touch-action: manipulation;
+        min-height: 100vh;
+        min-height: -webkit-fill-available;
+    }
+    
+    html {
+        scroll-behavior: smooth;
+        width: 100%;
+        overflow-x: hidden;
+        height: -webkit-fill-available;
     }
     
     /* Aplicar Poppins a todos los elementos */
@@ -16,6 +28,7 @@
         margin: 0;
         padding: 0;
         box-sizing: border-box;
+        -webkit-tap-highlight-color: transparent;
     }
     
     /* Usar solo la paleta de colores oscuros por defecto */
@@ -1030,9 +1043,31 @@
         }
         
         /* Asegurar que el contenido principal ocupe todo el ancho en móvil */
-        .w-full.lg\:w-3\/4.lg\:pr-6 {
+        .w-full.lg\:w-3\/4.lg\:pr-6, 
+        .w-full.lg\:w-full.lg\:pr-6 {
             width: 100% !important;
             padding-right: 0 !important;
+            padding-left: 0 !important;
+        }
+
+        /* Mejorar margen en elementos con overflow */
+        pre, code, .relative.bg-gray-800 {
+            max-width: 100%;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+
+        /* Ajustar tamaño de texto para evitar desbordamiento horizontal */
+        p, li, h2, h3, h4, h5, h6 {
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            hyphens: auto;
+        }
+
+        /* Mejorar el espaciado para elementos principales */
+        main, #main-content, section {
+            padding-left: 0.75rem !important;
+            padding-right: 0.75rem !important;
         }
     }
 
@@ -1179,19 +1214,75 @@
     /* Ajuste para móvil: sidebar más angosto y texto adaptable */
     @media (max-width: 640px) {
         aside.sidebar {
-            width: 100vw !important;
+            width: 85vw !important;
             min-width: 0 !important;
-            max-width: 110vw !important;
+            max-width: 85vw !important;
         }
+        
         .sidebar-header h2 {
             font-size: 1.1rem !important;
             white-space: normal !important;
             word-break: break-word !important;
             padding-right: 0.5rem !important;
         }
+        
         .sidebar-header {
             padding-left: 0.5rem !important;
             padding-right: 0.5rem !important;
+        }
+
+        /* Ajustar tamaño de fuente para móvil */
+        p, li {
+            font-size: 0.95rem !important;
+        }
+        
+        h2 {
+            font-size: 1.5rem !important;
+        }
+        
+        h3 {
+            font-size: 1.25rem !important;
+        }
+
+        /* Ajustar padding para mejor uso de espacio */
+        .p-4.lg\:p-6.flex.flex-col.lg\:flex-row {
+            padding: 0.75rem !important;
+        }
+
+        /* Reducir padding en bloques de código */
+        .relative.bg-gray-800 {
+            padding: 0.75rem !important;
+        }
+
+        /* Mejorar visualización de ejemplos */
+        .border.rounded-lg.overflow-hidden.mb-6 {
+            max-width: 100%;
+        }
+
+        /* Ajustar los botones flotantes para evitar solapamientos */
+        #toc-mobile-toggle, #back-to-top {
+            bottom: 1rem;
+            width: 40px;
+            height: 40px;
+        }
+
+        #back-to-top {
+            right: 1rem;
+        }
+
+        #toc-mobile-toggle {
+            left: 1rem;
+        }
+
+        /* Ajustar modales y popups para que sean responsivos */
+        #mobile-toc {
+            max-height: 80vh;
+        }
+        
+        /* Evitar que elementos se salgan de la pantalla */
+        img, svg, canvas, video, iframe {
+            max-width: 100%;
+            height: auto;
         }
     }
 
@@ -1206,5 +1297,86 @@
             font-size: 1.2rem !important;
             white-space: normal !important;
             word-break: break-word !important;
+        }
+    }
+
+    /* Mejoras para el rendimiento y experiencia de usuario en todos los dispositivos */
+    .touch-device {
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-y;
+    }
+
+    /* Solución para el contenido desbordado horizontalmente */
+    .overflow-fix {
+        max-width: 100vw;
+        overflow-x: hidden;
+    }
+
+    /* Mejoras para el renderizado de texto y fuentes */
+    body, p, h1, h2, h3, h4, h5, h6 {
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Mejora para el scroll suave en todos los navegadores */
+    @media screen and (prefers-reduced-motion: no-preference) {
+        html {
+            scroll-behavior: smooth;
+        }
+    }
+
+    /* Mejora para pantallas pequeñas */
+    @media (max-width: 360px) {
+        body {
+            font-size: 14px;
+        }
+        
+        .sidebar-header h2 {
+            font-size: 1rem !important;
+        }
+        
+        #main-title span {
+            font-size: 0.9rem !important;
+        }
+        
+        .p-4 {
+            padding: 0.5rem !important;
+        }
+        
+        /* Reducir espacio para aprovechar pantallas muy pequeñas */
+        .mb-4, .mb-6, .my-6 {
+            margin-bottom: 0.75rem !important;
+        }
+        
+        .mt-6, .mt-8, .my-6 {
+            margin-top: 0.75rem !important;
+        }
+    }
+
+    /* Mejoras para tablets */
+    @media (min-width: 641px) and (max-width: 768px) {
+        p, li {
+            font-size: 0.95rem;
+        }
+        
+        .sidebar-header h2 {
+            font-size: 1.25rem !important;
+        }
+        
+        /* Asegurar que los elementos de código sean completamente responsivos */
+        pre, code {
+            max-width: 100%;
+            white-space: pre-wrap;
+        }
+    }
+
+    /* Mejora para las animaciones en dispositivos de bajo rendimiento */
+    @media (prefers-reduced-motion: reduce) {
+        *, ::before, ::after {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+            scroll-behavior: auto !important;
         }
     }
