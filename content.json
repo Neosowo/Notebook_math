@@ -9,46 +9,66 @@
           "type": "paragraph",
           "text": "La lógica es la base del razonamiento matemático, permitiendo construir y analizar argumentos de manera rigurosa."
         },
-        {
-          "type": "paragraph",
-          "text": "La lógica es la base del razonamiento matemático, permitiendo construir y analizar argumentos de manera rigurosa."
-        },
+
         {
           "type": "subheading",
-          "id": "importancia-logica",
-          "title": "Importancia de la Lógica"
+          "id": "proposicion",
+          "title": "Proposiciones"
+        },
+        {
+          "type":"paragraph",
+          "text":"Las proposiciones son afirmaciones que pueden ser tanto verdaderas como falsas, como tal una proposición no se le puede atribuir ambos valores de verdad al mismo tiempo.<br><br>Para que una proposición sea valida debe cumplir con que sea una afirmación específica, debe tener un valor único de verdad y no debe cumplir el que sea un juicio de valor."
+        },
+        {
+          "type":"paragraph",
+          "text":"<strong>¿Cuáles son proposiciones?</strong>"
         },
         {
           "type": "list",
           "items": [
-            "Permite construir argumentos válidos.",
-            "Es la base de las demostraciones matemáticas.",
-            "Se aplica en programación y electrónica."
+            "22 es un número par",
+            "30 + 2 = 123",
+            "Los gatos son anfibios"
           ]
+         },
+         {
+          "type":"paragraph",
+          "text":"<strong>No son proposición</strong>"
         },
         {
-          "type": "code",
-          "code": "def saludar():\n    print('Hola Mundo')"
+          "type": "list",
+          "items": [
+            "Hoy es martes (no tiene un valor único de verdad)",
+            "x + 1 = 23 (no tiene un valor único de verdad)",
+            "La ESPOL no es dificil (es un juicio de valor)"
+          ]
+         },
+         {
+          "type": "subheading",
+          "id": "tabla-verdad",
+          "title": "Tablas de verdad"
         },
         {
-          "type": "note",
-          "title": "Dato Curioso",
-          "text": "La lógica booleana es fundamental en el diseño de circuitos digitales."
+          "type":"paragraph",
+          "text":"Dentro las proposiciones existe algo llamado operadores estos son: Negación, Negación implicita, Disyunción inclusiva, Disyunción exclusiva, Conjunción, Condicional, Bicondicional."
         },
         {
-          "type": "warning",
-          "title": "Advertencia",
-          "text": "No todos los razonamientos intuitivos son válidos en lógica formal."
-        },
-        {
-          "type": "example",
-          "title": "Ejemplo de Código en Python",
-          "code": "if True:\n    print('La condición es verdadera')"
-        },
-        {
-          "type": "latex",
-          "latex": "\\int_{a}^{b} f(x) \\,dx = F(b) - F(a)"
+          "type": "table",
+          "headers": ["A", "B", "A ∧ B"],
+          "rows": [
+            ["0", "0", "0"],
+            ["0", "1", "0"],
+            ["1", "0", "0"],
+            ["1", "1", "1"]
+          ]
         }
+
+
+
+
+
+
+
       ]
     },
     {

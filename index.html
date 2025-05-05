@@ -301,103 +301,148 @@
         
         // Función para renderizar un elemento de contenido
         function renderContentItem(item, container) {
-            switch (item.type) {
-                case 'paragraph':
-                    const p = document.createElement('p');
-                    p.className = 'mb-4 text-gray-700';
-                    p.innerHTML = item.text;
-                    container.appendChild(p);
-                    break;
-                    
-                case 'subheading':
-                    const h3 = document.createElement('h3');
-                    h3.id = item.id;
-                    h3.className = 'text-xl font-semibold mt-6 mb-3';
-                    h3.textContent = item.title;
-                    container.appendChild(h3);
-                    break;
-                    
-                case 'code':
-                    const codeBlock = document.createElement('div');
-                    codeBlock.className = 'relative bg-gray-800 text-white p-4 rounded-lg mb-6 font-mono text-sm';
-                    codeBlock.innerHTML = `
-                        <button class="copy-code absolute top-3 right-3 p-1 rounded text-gray-400 hover:text-white hover:bg-gray-700">
-                                <i class="fas fa-copy"></i>
-                            </button>
-                        <pre class="overflow-x-auto"><code>${escapeHtml(item.code)}</code></pre>
-                    `;
-                    container.appendChild(codeBlock);
-                    break;
-                    
-                case 'note':
-                    const note = document.createElement('div');
-                    note.className = 'bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r';
-                    note.innerHTML = `
-                        <div class="flex items-center mb-2">
-                            <i class="fas fa-info-circle text-blue-500 mr-2"></i>
-                            <span class="font-semibold">${item.title}</span>
-                        </div>
-                        <p class="text-gray-700">${item.text}</p>
-                    `;
-                    container.appendChild(note);
-                    break;
-                    
-                case 'warning':
-                    const warning = document.createElement('div');
-                    warning.className = 'bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-6 rounded-r';
-                    warning.innerHTML = `
-                        <div class="flex items-center mb-2">
-                            <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
-                            <span class="font-semibold">${item.title}</span>
-                        </div>
-                        <p class="text-gray-700">${item.text}</p>
-                    `;
-                    container.appendChild(warning);
-                    break;
-                    
-                case 'list':
-                    const ul = document.createElement('ul');
-                    ul.className = 'list-disc pl-6 mb-6 text-gray-700';
-                    item.items.forEach(listItem => {
-                        const li = document.createElement('li');
-                        li.className = 'mb-2';
-                        li.innerHTML = listItem;
-                        ul.appendChild(li);
-                    });
-                    container.appendChild(ul);
-                    break;
-                
-                    case 'latex':
-    const latexBlock = document.createElement('div');
-    latexBlock.className = 'my-6 flex justify-center latex-block';
-    latexBlock.innerHTML = `\\(${item.latex}\\)`;
-    container.appendChild(latexBlock);
+    switch (item.type) {
+        case 'paragraph':
+            const p = document.createElement('p');
+            p.className = 'mb-4 text-gray-700';
+            p.innerHTML = item.text;
+            container.appendChild(p);
+            break;
 
-    if (window.MathJax) {
-        MathJax.typesetPromise([latexBlock]);
-    }
-    break;
+        case 'subheading':
+            const h3 = document.createElement('h3');
+            h3.id = item.id;
+            h3.className = 'text-xl font-semibold mt-6 mb-3';
+            h3.textContent = item.title;
+            container.appendChild(h3);
+            break;
 
+        case 'code':
+            const codeBlock = document.createElement('div');
+            codeBlock.className = 'relative bg-gray-800 text-white p-4 rounded-lg mb-6 font-mono text-sm';
+            codeBlock.innerHTML = `
+                <button class="copy-code absolute top-3 right-3 p-1 rounded text-gray-400 hover:text-white hover:bg-gray-700">
+                    <i class="fas fa-copy"></i>
+                </button>
+                <pre class="overflow-x-auto"><code>${escapeHtml(item.code)}</code></pre>
+            `;
+            container.appendChild(codeBlock);
+            break;
 
-                    
-                case 'example':
-                    const example = document.createElement('div');
-                    example.className = 'border rounded-lg overflow-hidden mb-6';
-                    example.innerHTML = `
-                        <div class="bg-gray-100 font-medium px-4 py-2 border-b">${item.title}</div>
-                        <div class="p-4">
-                            <div class="relative bg-gray-800 text-white p-4 rounded-lg font-mono text-sm">
-                                <button class="copy-code absolute top-3 right-3 p-1 rounded text-gray-400 hover:text-white hover:bg-gray-700">
-                                    <i class="fas fa-copy"></i>
-                                </button>
-                                <pre class="overflow-x-auto"><code>${escapeHtml(item.code)}</code></pre>
-                            </div>
-                        </div>
-                    `;
-                    container.appendChild(example);
-                    break;
+        case 'note':
+            const note = document.createElement('div');
+            note.className = 'bg-blue-50 border-l-4 border-blue-500 p-4 mb-6 rounded-r';
+            note.innerHTML = `
+                <div class="flex items-center mb-2">
+                    <i class="fas fa-info-circle text-blue-500 mr-2"></i>
+                    <span class="font-semibold">${item.title}</span>
+                </div>
+                <p class="text-gray-700">${item.text}</p>
+            `;
+            container.appendChild(note);
+            break;
+
+        case 'warning':
+            const warning = document.createElement('div');
+            warning.className = 'bg-yellow-50 border-l-4 border-yellow-500 p-4 mb-6 rounded-r';
+            warning.innerHTML = `
+                <div class="flex items-center mb-2">
+                    <i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>
+                    <span class="font-semibold">${item.title}</span>
+                </div>
+                <p class="text-gray-700">${item.text}</p>
+            `;
+            container.appendChild(warning);
+            break;
+
+        case 'list':
+            const ul = document.createElement('ul');
+            ul.className = 'list-disc pl-6 mb-6 text-gray-700';
+            item.items.forEach(listItem => {
+                const li = document.createElement('li');
+                li.className = 'mb-2';
+                li.innerHTML = listItem;
+                ul.appendChild(li);
+            });
+            container.appendChild(ul);
+            break;
+
+        case 'latex':
+            const latexBlock = document.createElement('div');
+            latexBlock.className = 'my-6 flex justify-center latex-block';
+            latexBlock.innerHTML = `\\(${item.latex}\\)`;
+            container.appendChild(latexBlock);
+            if (window.MathJax) {
+                MathJax.typesetPromise([latexBlock]);
             }
-        }
+            break;
+
+        case 'example':
+            const example = document.createElement('div');
+            example.className = 'border rounded-lg overflow-hidden mb-6';
+            example.innerHTML = `
+                <div class="bg-gray-100 font-medium px-4 py-2 border-b">${item.title}</div>
+                <div class="p-4">
+                    <div class="relative bg-gray-800 text-white p-4 rounded-lg font-mono text-sm">
+                        <button class="copy-code absolute top-3 right-3 p-1 rounded text-gray-400 hover:text-white hover:bg-gray-700">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                        <pre class="overflow-x-auto"><code>${escapeHtml(item.code)}</code></pre>
+                    </div>
+                </div>
+            `;
+            container.appendChild(example);
+            break;
+
+        case 'table':
+            const table = document.createElement('table');
+            table.className = 'w-full border border-gray-300 mb-6 text-center';
+
+            const thead = document.createElement('thead');
+            const headRow = document.createElement('tr');
+            item.headers.forEach(header => {
+                const th = document.createElement('th');
+                th.className = 'border px-4 py-2 bg-gray-100';
+                th.textContent = header;
+                headRow.appendChild(th);
+            });
+            thead.appendChild(headRow);
+            table.appendChild(thead);
+
+            const tbody = document.createElement('tbody');
+            item.rows.forEach(row => {
+                const tr = document.createElement('tr');
+                row.forEach(cell => {
+                    const td = document.createElement('td');
+                    td.className = 'border px-4 py-2';
+                    td.textContent = cell;
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            });
+            table.appendChild(tbody);
+
+            container.appendChild(table);
+            break;
+
+        case 'image':
+            const img = document.createElement('img');
+            img.src = item.src;
+            img.alt = item.alt || '';
+            img.className = 'my-4 rounded-lg shadow-md';
+            container.appendChild(img);
+            break;
+
+        case 'video':
+            const video = document.createElement('video');
+            video.src = item.src;
+            video.controls = true;
+            video.className = 'w-full my-4 rounded-lg shadow-md';
+            container.appendChild(video);
+            break;
+    }
+}
+
         
         // Función para escapar HTML
         function escapeHtml(text) {
