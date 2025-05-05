@@ -62,6 +62,7 @@
     .toc-wrapper {
         background-color: var(--card-bg) !important;
         border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     }
     
     /* Unificar el aspecto del menú de la derecha */
@@ -367,11 +368,10 @@
     /* Hacer que el sidebar sea sticky en escritorio */
     @media (min-width: 1024px) {
         aside.sidebar {
-            position: sticky;
-            top: 0;
-            height: 100vh;
-            width: 18rem;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+            width: 16rem !important;
+            min-width: 13rem !important;
+            max-width: 16rem !important;
+            box-sizing: border-box;
         }
     }
     
@@ -421,8 +421,9 @@
     
     /* Tabla de contenidos fija */
     .toc-wrapper {
-        position: sticky;
-        top: 5rem;
+        background-color: var(--card-bg) !important;
+        border-radius: 8px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
     }
     
     /* Barra de navegación con webkit */
@@ -1417,4 +1418,19 @@
     .toc-content a,
     #mobile-toc a {
         scroll-margin-top: 70px; /* Ajustar según la altura de tu header */
+    }
+
+    /* Estilos para enlaces activos en el TOC */
+    .toc-content a.active {
+        color: var(--accent-color);
+        font-weight: 500;
+        border-left-color: var(--accent-color) !important;
+    }
+
+    /* Estilos para hover y active en enlaces del TOC */
+    .toc-content a:hover,
+    .toc-content a:focus,
+    .toc-content a.active {
+        color: var(--accent-color);
+        transition: all 0.2s ease-in-out;
     }

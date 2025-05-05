@@ -48,7 +48,7 @@
 <body class="bg-gray-50 font-sans flex flex-col min-h-screen touch-device overflow-fix">
     <div class="flex flex-grow">
         <!-- Sidebar -->
-        <aside id="notebook_math_title" class="sidebar fixed lg:relative inset-y-0 left-0 w-72 shadow-lg z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out overflow-y-auto">
+        <aside id="notebook_math_title" class="sidebar fixed lg:sticky lg:top-0 lg:h-screen inset-y-0 left-0 w-72 shadow-lg z-50 transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out overflow-y-auto">
             <div class="sticky top-0 sidebar-header z-10 py-3 px-4 flex justify-between items-center">
                 <h2 class="text-lg font-bold flex items-center" >
                     <img src="assets/img/icon_gradient.png" alt="Logo" class="w-6 h-6 mr-2">
@@ -98,8 +98,8 @@
                 </div>
                 
                 <!-- Tabla de Contenidos (Escritorio) -->
-                <div class="w-full lg:w-1/4 mt-8 lg:mt-0 lg:ml-6">
-                    <div class="toc-wrapper rounded-lg p-4 shadow-aesthetic" style="background-color:var(--text-color) ;">
+                <div class="w-full lg:w-1/4 mt-8 lg:mt-0 lg:ml-6 toc-container">
+                    <div class="toc-wrapper rounded-lg p-4 shadow-aesthetic">
                         <h3 class="font-medium mb-3 flex items-center" style="color: var(--text-color);">
                             <i class="fas fa-list-ul text-accent mr-2"></i>
                             En esta página
@@ -144,6 +144,7 @@
     
     <!-- Scripts -->
     <script src="assets/js/sidebar-scroll.js"></script>
+    <script src="assets/js/sticky-scroll.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
         // Referencias a elementos del DOM
