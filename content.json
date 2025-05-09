@@ -1,27 +1,26 @@
 {
-  "title": "Matemáticas Generales",
+  "title": "Lógica Proposicional",
   "sections": [
     {
-      "id": "logica",
+      "id": "introduccion",
       "title": "Capítulo 1: Lógica",
       "content": [
         {
           "type": "paragraph",
           "text": "La lógica es la base del razonamiento matemático, permitiendo construir y analizar argumentos de manera rigurosa."
         },
-
         {
           "type": "subheading",
-          "id": "proposicion",
-          "title": "Proposiciones"
+          "id": "proposiciones",
+          "title": "¿Qué es una proposición?"
         },
         {
-          "type":"paragraph",
-          "text":"Las proposiciones son afirmaciones que pueden ser tanto verdaderas como falsas, como tal una proposición no se le puede atribuir ambos valores de verdad al mismo tiempo.<br><br>Para que una proposición sea valida debe cumplir con que sea una afirmación específica, debe tener un valor único de verdad y no debe cumplir el que sea un juicio de valor."
+          "type": "paragraph",
+          "text": "Una proposición es una afirmación que puede ser verdadera o falsa. No puede tener ambos valores de verdad simultáneamente. Para que una afirmación sea considerada una proposición, debe cumplir con los siguientes criterios: No debe ser una pregunta. No debe ser una exclamación. No debe expresar un juicio de valor. Debe ser una afirmación. Debe tener un único valor de verdad."
         },
-        {
-          "type":"paragraph",
-          "text":"<strong>¿Cuáles son proposiciones?</strong>"
+         {
+          "type": "paragraph",
+          "text": "Ejemplos de proposiciones:"
         },
         {
           "type": "list",
@@ -32,155 +31,207 @@
           ]
          },
          {
-          "type":"paragraph",
-          "text":"<strong>No son proposición</strong>"
+          "type": "paragraph",
+          "text": "¿Qué es una variable proposicional?"
+        },
+        {
+          "type": "paragraph",
+          "text": "Una variable proposicional se define como una proposición, con la diferencia de que su valor de verdad puede variar. Ejemplos: Hoy es miércoles, X + 1 = λ0, Hoy es mi cumpleaños."
+        },
+        {
+          "type": "paragraph",
+          "text": "No toda expresión que no es una proposición es automáticamente una variable proposicional. Para ser considerada como tal, debe cumplir con todos los requisitos de una proposición, excepto el de tener un único valor de verdad fijo."
+        },
+        {
+          "type": "subheading",
+          "id": "operadores-logicos",
+          "title": "Operadores lógicos"
+        },
+        {
+          "type": "paragraph",
+          "text": "Así como la matemática básica utiliza operadores, la lógica proposicional también tiene los suyos, los cuales se identifican de la siguiente manera:"
         },
         {
           "type": "list",
           "items": [
-            "Hoy es martes (no tiene un valor único de verdad)",
-            "x + 1 = 23 (no tiene un valor único de verdad)",
-            "La ESPOL no es dificil (es un juicio de valor)"
+            "Negación (¬): Se lee como 'no p', 'No es cierto que p', 'No es verdad que p', 'Es falso que p'.",
+            "Negación implícita: A diferencia de la negación estándar, esta se forma utilizando antónimos de las proposiciones.",
+            "Conjunción (∧): Se lee como 'y', 'pero', 'mas', 'Sin embargo', 'además', 'todavía', 'aunque', 'como', 'e incluso', 'a la vez que', 'no obstante', 'a pesar de que'.",
+            "Disyunción inclusiva (v): Se lee como 'o'.",
+            "Disyunción exclusiva (Y): Se lee como 'p o q', 'O p o q', 'O solo p o solo q', 'O solamente p o solamente q'.",
+            "Condicional (→): Se lee como 'Cuando', 'pues', 'debido a que', 'puesto que', 'ya que', 'dado que', 'por qué', 'es suficiente que', 'siempre que', 'con tal que', 'basta que'."
           ]
-         },
-         {
+        },
+        {
           "type": "subheading",
-          "id": "tabla-verdad",
+          "id": "tablas-de-verdad",
           "title": "Tablas de verdad"
         },
         {
-          "type":"paragraph",
-          "text":"Dentro las proposiciones existe algo llamado operadores estos son: Negación, Negación implicita, Disyunción inclusiva, Disyunción exclusiva, Conjunción, Condicional, Bicondicional."
+          "type": "paragraph",
+          "text": "Una tabla de verdad es una herramienta que muestra todas las posibles combinaciones de valores de verdad para una operación entre proposiciones."
+        },
+        {
+          "type": "paragraph",
+          "text": "Por ejemplo, si tenemos las proposiciones p y q, y la operación p ∧ q, la tabla de verdad sería la siguiente:"
         },
         {
           "type": "table",
-          "headers": ["A", "B", "A ∧ B"],
+          "headers": ["p", "q", "p ∧ q"],
           "rows": [
             ["0", "0", "0"],
             ["0", "1", "0"],
             ["1", "0", "0"],
             ["1", "1", "1"]
           ]
-        }
-
-
-
-
-
-
-
-      ]
-    },
-    {
-      "id": "conjuntos",
-      "title": "Capítulo 2: Conjuntos",
-      "content": [
+        },
         {
           "type": "paragraph",
-          "text": "La teoría de conjuntos estudia colecciones de objetos, fundamentales para toda la matemática moderna."
-        }
-      ]
-    },
-    {
-      "id": "numeros-reales",
-      "title": "Capítulo 3: Números Reales",
-      "content": [
+          "text": "Esta es una tabla de combinaciones. A medida que aumenta el número de proposiciones, la cantidad de combinaciones también cambia. El número de combinaciones se determina con la fórmula 2^n, donde 2 es la base (porque en la lógica proposicional y booleana solo hay dos valores: 0 y 1) y n es el exponente (que representa la cantidad de proposiciones)."
+        },
+        {
+         "type": "paragraph",
+         "text": "Para evaluar cada operación, es necesario conocer el valor de verdad de cada operador."
+        },
+        {
+          "type": "table",
+          "headers": ["p", "q", "¬p", "p v q", "p ∧ q", "p → q"],
+          "rows": [
+            ["1", "1", "0", "1", "1", "1"],
+            ["1", "0", "0", "1", "0", "0"],
+            ["0", "1", "1", "1", "0", "1"],
+            ["0", "0", "1", "0", "0", "1"]
+          ]
+        },
+        {
+          "type": "subheading",
+          "id": "condicional",
+          "title": "El condicional"
+        },
         {
           "type": "paragraph",
-          "text": "Los números reales incluyen racionales e irracionales, y son esenciales para medir y comparar cantidades."
-        }
-      ]
-    },
-    {
-      "id": "funciones-variable-real",
-      "title": "Capítulo 4: Funciones de una variable real",
-      "content": [
+          "text": "El condicional es uno de los operadores más complejos debido a la variedad de situaciones en las que se utiliza. Se lee como 'p entonces q'. Esta es una traducción básica del condicional, y para entenderlo correctamente, es fundamental comprender su comportamiento. Un condicional establece una relación donde una cosa sucede si otra ocurre, como en la frase 'Si hago esto, pasa esto otro'."
+        },
+        {
+         "type": "paragraph",
+         "text": "En un condicional, el antecedente causa el consecuente. Por lo tanto, se identifica de la siguiente manera:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "p = antecedente",
+            "q = consecuente"
+          ]
+        },
         {
           "type": "paragraph",
-          "text": "Las funciones de una variable real modelan relaciones entre cantidades y permiten describir fenómenos naturales y matemáticos."
-        }
-      ]
-    },
-    {
-      "id": "trigonometria",
-      "title": "Capítulo 5: Trigonometría",
-      "content": [
+          "text": "En las traducciones del condicional, la palabra 'Si' suele señalar al antecedente. Por ejemplo: 'Si el sol explota, yo apruebo el parcial'. Esto indica que la explosión del sol es la condición para aprobar el parcial. Sin embargo, la oración no impide que se apruebe el parcial por otras razones. En este ejemplo, 'Si el sol explota' es el antecedente, y 'yo apruebo el parcial' es el consecuente."
+        },
+        {
+          "type": "subheading",
+          "id": "variaciones-condicional",
+          "title": "Variaciones del condicional"
+        },
         {
           "type": "paragraph",
-          "text": "La trigonometría estudia las relaciones entre los lados y ángulos de los triángulos, siendo fundamental en la geometría y la física."
-        }
-      ]
-    },
-    {
-      "id": "matrices-sistemas",
-      "title": "Capítulo 6: Matrices y sistemas de ecuaciones e inecuaciones",
-      "content": [
+          "text": "Existen construcciones especiales, como el 'si y solo si', donde no se distingue claramente entre antecedente y consecuente."
+        },
+        {
+          "type": "list",
+          "items": [
+            "p → q",
+            "Recíproca: q → p",
+            "Inversa: ¬p → ¬q",
+            "Contra recíproca: ¬q → ¬p"
+           ]
+        },
+        {
+          "type": "subheading",
+          "id": "condiciones",
+          "title": "Condiciones suficientes y necesarias"
+        },
         {
           "type": "paragraph",
-          "text": "Las matrices y los sistemas permiten representar y resolver múltiples ecuaciones e inecuaciones de forma estructurada."
-        }
-      ]
-    },
-    {
-      "id": "geometria-plana",
-      "title": "Capítulo 7: Geometría plana",
-      "content": [
+          "text": "p → q ≡ 1"
+        },
+        {
+          "type": "list",
+          "items": [
+           "Suficiente: p es suficiente para q",
+           "Necesaria: q es necesaria para p"
+          ]
+        },
         {
           "type": "paragraph",
-          "text": "La geometría plana estudia figuras en dos dimensiones como triángulos, círculos y polígonos, analizando sus propiedades."
-        }
-      ]
-    },
-    {
-      "id": "geometria-espacio",
-      "title": "Capítulo 8: Geometría del espacio",
-      "content": [
+          "text": "Las condiciones suficientes y necesarias se pueden entender de la siguiente manera:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Suficiente: La verdad de p asegura la verdad de q.",
+            "Necesaria: La verdad de q es requerida para la verdad de p."
+          ]
+        },
+        {
+         "type": "subheading",
+         "id": "formas-proposicionales",
+         "title": "Formas Proposicionales"
+        },
+        {
+         "type": "paragraph",
+         "text": "Una forma proposicional es una estructura compuesta por variables proposicionales y los operadores lógicos que las conectan. Una proposición compuesta es una estructura formada por proposiciones simples y conectores lógicos (p, q)."
+        },
+        {
+         "type": "paragraph",
+         "text": "Existen 3 tipos de formas proposicionales:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "Tautología: Forma proposicional que siempre es verdadera, independientemente de los valores de verdad de las variables proposicionales.",
+            "Contradicción: Forma proposicional que siempre es falsa, independientemente de los valores de verdad de las variables proposicionales.",
+            "Contingencia: Forma proposicional que puede ser verdadera o falsa, dependiendo de los valores de verdad de las variables proposicionales."
+          ]
+        },
         {
           "type": "paragraph",
-          "text": "La geometría del espacio se enfoca en figuras tridimensionales como prismas, esferas y cilindros."
-        }
-      ]
-    },
-    {
-      "id": "numeros-complejos",
-      "title": "Capítulo 9: Números complejos",
-      "content": [
+          "text": "Ejemplos:"
+        },
+        {
+          "type": "list",
+          "items": [
+            "A: (p ∧ ¬p) → q  (Tautología)",
+            "B: (p → q) ∧ (p ∧ ¬q)  (Contingencia)"
+          ]
+        },
+        {
+          "type": "subheading",
+          "id": "implicacion-logica",
+          "title": "Implicación Lógica"
+        },
         {
           "type": "paragraph",
-          "text": "Los números complejos amplían los reales para resolver ecuaciones que no tienen soluciones reales."
-        }
-      ]
-    },
-    {
-      "id": "vectores",
-      "title": "Capítulo 10: Vectores",
-      "content": [
+          "text": "Una implicación lógica es una forma proposicional tautológica cuyo operador lógico principal es el condicional."
+        },
         {
           "type": "paragraph",
-          "text": "Los vectores representan magnitudes que tienen dirección y sentido, y son esenciales en física y matemáticas."
-        }
-      ]
-    },
-    {
-      "id": "geometria-analitica-r2",
-      "title": "Capítulo 11: Geometría analítica en R2",
-      "content": [
+          "text": "Ejemplo: [(p → q) ∧ p] → q (Condicional como operador principal, proposición tautológica)."
+        },
+        {
+          "type": "subheading",
+          "id": "equivalencia-logica",
+          "title": "Equivalencia Lógica"
+        },
         {
           "type": "paragraph",
-          "text": "La geometría analítica combina el álgebra y la geometría para estudiar figuras en el plano mediante coordenadas."
-        }
-      ]
-    },
-    {
-      "id": "estadistica-probabilidades",
-      "title": "Capítulo 12: Estadística y probabilidades",
-      "content": [
+          "text": "Dos formas proposicionales son lógicamente equivalentes si tienen la misma tabla de verdad."
+        },
         {
           "type": "paragraph",
-          "text": "La estadística y la probabilidad permiten analizar datos, hacer predicciones y entender fenómenos aleatorios."
+          "text": "Ejemplo:"
         }
       ]
     }
   ],
-  "lastUpdated": "2025-04-27T00:00:00.000Z"
+  "lastUpdated": "2024-05-10T10:20:00.000Z"
 }
