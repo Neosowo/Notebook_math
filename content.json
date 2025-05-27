@@ -226,8 +226,6 @@
           "type": "paragraph",
           "text": "Ejemplo:"
         },
-
-
         {
           "type": "latex",
           "latex": "\\ \\\\[6pt]\n\\begin{array}{|c|c|c|c|c|}\n\\hline\np & q & \\neg p & \\neg p \\lor q & p \\rightarrow q \\\\\n\\hline\n1 & 1 & 0 & 1 & 1 \\\\\n1 & 0 & 0 & 0 & 0 \\\\\n0 & 1 & 1 & 1 & 1 \\\\\n0 & 0 & 1 & 1 & 1 \\\\\n\\hline\n\\end{array}"
@@ -236,6 +234,7 @@
           "type": "paragraph",
           "text": "Ejemplo:"
         }
+ 
 
       ]
     }
