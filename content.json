@@ -75,15 +75,10 @@
           "type": "paragraph",
           "text": "Por ejemplo, si tenemos las proposiciones p y q, y la operación p ∧ q, la tabla de verdad sería la siguiente:"
         },
+
         {
-          "type": "table",
-          "headers": ["p", "q", "p ∧ q"],
-          "rows": [
-            ["0", "0", "0"],
-            ["0", "1", "0"],
-            ["1", "0", "0"],
-            ["1", "1", "1"]
-          ]
+          "type": "latex",
+          "latex": "\\begin{array}{|c|c|c|}\\hline p & q & p \\land q \\\\ \\hline 0 & 0 & 0 \\\\ 0 & 1 & 0 \\\\ 1 & 0 & 0 \\\\ 1 & 1 & 1 \\\\ \\hline \\end{array}"
         },
         {
           "type": "paragraph",
@@ -94,15 +89,10 @@
          "text": "Para evaluar cada operación, es necesario conocer el valor de verdad de cada operador."
         },
         {
-          "type": "table",
-          "headers": ["p", "q", "¬p", "p v q", "p ∧ q", "p → q"],
-          "rows": [
-            ["1", "1", "0", "1", "1", "1"],
-            ["1", "0", "0", "1", "0", "0"],
-            ["0", "1", "1", "1", "0", "1"],
-            ["0", "0", "1", "0", "0", "1"]
-          ]
+        "type": "latex",
+        "latex": "\\begin{array}{|c|c|c|c|c|c|}\n\\hline p & q & \\neg p & p \\lor q & p \\land q & p \\rightarrow q \\\\ \\hline\n1 & 1 & 0 & 1 & 1 & 1 \\\\\n1 & 0 & 0 & 1 & 0 & 0 \\\\\n0 & 1 & 1 & 1 & 0 & 1 \\\\\n0 & 0 & 1 & 0 & 0 & 1 \\\\\n\\hline\n\\end{array}"
         },
+
         {
           "type": "subheading",
           "id": "condicional",
@@ -217,6 +207,11 @@
           "type": "paragraph",
           "text": "Ejemplo: [(p → q) ∧ p] → q (Condicional como operador principal, proposición tautológica)."
         },
+{
+  "type": "latex",
+  "latex": "\\begin{array}{|c|c|c|c|c|}\n\\hline p & q & p \\rightarrow q & (p \\rightarrow q) \\land p & [(p \\rightarrow q) \\land p] \\rightarrow q \\\\ \\hline\n1 & 1 & 1 & 1 & 1 \\\\\n1 & 0 & 0 & 0 & 1 \\\\\n0 & 1 & 1 & 0 & 1 \\\\\n0 & 0 & 1 & 0 & 1 \\\\\n\\hline\n\\end{array}"
+},
+
         {
           "type": "subheading",
           "id": "equivalencia-logica",
@@ -226,10 +221,22 @@
           "type": "paragraph",
           "text": "Dos formas proposicionales son lógicamente equivalentes si tienen la misma tabla de verdad."
         },
+        
+        {
+          "type": "paragraph",
+          "text": "Ejemplo:"
+        },
+
+
+        {
+          "type": "latex",
+          "latex": "\\ \\\\[6pt]\n\\begin{array}{|c|c|c|c|c|}\n\\hline\np & q & \\neg p & \\neg p \\lor q & p \\rightarrow q \\\\\n\\hline\n1 & 1 & 0 & 1 & 1 \\\\\n1 & 0 & 0 & 0 & 0 \\\\\n0 & 1 & 1 & 1 & 1 \\\\\n0 & 0 & 1 & 1 & 1 \\\\\n\\hline\n\\end{array}"
+        },
         {
           "type": "paragraph",
           "text": "Ejemplo:"
         }
+
       ]
     }
   ],

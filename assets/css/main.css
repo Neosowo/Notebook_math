@@ -25,7 +25,7 @@
     
     /* Aplicar Poppins a todos los elementos */
     * {
-        font-family: 'Poppins', sans-serif;
+
         margin: 0;
         padding: 0;
         box-sizing: border-box;
@@ -409,8 +409,9 @@
     }
     
     .latex-block {
-        font-size: 1.5rem; /* tamaño grande */
-        font-weight: 500;  /* un poco más grueso */
+        font-family: 'Times New Roman', Times, serif;
+        font-size: 1.1rem; /* tamaño grande */
+        font-weight: 300;  /* un poco más grueso */
         color: rgb(239, 238, 238);    /* un gris oscuro bonito */
         margin-top: 1rem;
         margin-bottom: 1rem;
